@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    public 
+    //public 
 
 
     // Start is called before the first frame update
