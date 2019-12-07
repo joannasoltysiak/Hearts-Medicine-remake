@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ActionPlace : MonoBehaviour
 {
+    public PlaceType type;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +21,8 @@ public class ActionPlace : MonoBehaviour
 
 public enum PlaceType
 {
-    Bed,
-    WaitingSeats,
-    Reception,
-    Chair
+    Bed,            //place for Client to lay down -> bed actions
+    WaitingSeats,   //place where Client wait to be picked
+    Reception,      //where Client wait to pay
+    Chair           //place for Client to sit -> chair actions
 }

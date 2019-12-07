@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-    public 
-
+    public ClientState state;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = ClientState.Walking;
     }
 
     // Update is called once per frame
