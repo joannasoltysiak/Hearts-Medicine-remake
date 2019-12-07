@@ -22,4 +22,9 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    public void SetTargetPosition(Vector2 position)
+    {
+        targetPosition = position;
+    }
 }
