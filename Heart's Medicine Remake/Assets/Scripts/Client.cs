@@ -12,6 +12,8 @@ public class Client : MonoBehaviour
     ActionPlace targetPlace;
     public SpriteRenderer bubble;
 
+    int numberOfActions;
+
     AIDestinationSetter pathfindingTarget;
 
     // Start is called before the first frame update
@@ -21,12 +23,14 @@ public class Client : MonoBehaviour
 
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
+
+        numberOfActions = Random.Range(1, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(targetPosition, transform.position) < 1.5f)
+        if (Vector3.Distance(targetPosition, transform.position) < 1.5f) // we have to change target to the place next to the place
         {
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
@@ -44,6 +48,10 @@ public class Client : MonoBehaviour
         pathfindingTarget.target = position;
     }
     
+    public void ChangeBubble()
+    {
+
+    }
     
 }
 

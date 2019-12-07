@@ -5,7 +5,9 @@ using UnityEngine;
 public class ActionPlace : MonoBehaviour
 {
     public PlaceType type;
-    public Client client;
+    Client client;
+    Actions[] possibleActions;
+    Actions activeAction;
 
     //public GameState gameState;
 
@@ -13,12 +15,31 @@ public class ActionPlace : MonoBehaviour
     void Start()
     {
         client = null;
+        activeAction = Actions.None;
+
+        switch (type)
+        {
+            case PlaceType.Bed:
+                possibleActions = new Actions[]{ Actions.CheckTemperature, Actions.CheckTemperature };
+                break;
+            case PlaceType.Chair:
+                possibleActions = new Actions[] { Actions.DoCheckup };
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(client != null && activeAction == Actions.None)
+        {
+            int random = Random.Range(0, possibleActions.Length - 1);
+            activeAction = possibleActions[random];
+
+            client.ChangeBubble(); //showing what client wants (need to implement)
+        }
+
+        //checking if player comes and if they got everything needed for active action
     }
 
     public void Clicked()
@@ -38,4 +59,12 @@ public enum PlaceType
     WaitingSeats,   //place where Client wait to be picked
     Reception,      //where Client wait to pay
     Chair           //place for Client to sit -> chair actions
+}
+
+public enum Actions
+{
+    None,
+    GetTermometr,
+    DoCheckup,
+    CheckTemperature
 }
