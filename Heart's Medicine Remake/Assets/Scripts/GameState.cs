@@ -55,17 +55,18 @@ public class GameState : MonoBehaviour
                         player.SetTargetPosition(clickedPlace);
                     }
                     else
-                    {
-                        if (clickedObject.tag == "Client")
+                    {           
+                        ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
+
+                        if (place != null)
                         {
-                            if (clickedObject != null)
+                            if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                             {
-                                Client client = clickedObject.GetComponent<Client>();                      
+                                Client client = clickedObject.GetComponent<Client>();
                                 client.SetTargetPosition(clickedPlace);
+
                             }
-
                         }
-
                     }
                     clickedObject = null;
                     break;
