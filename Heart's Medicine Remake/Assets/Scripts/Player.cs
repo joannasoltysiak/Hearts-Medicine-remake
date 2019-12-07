@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Item[] itemList;
+    Item[] itemList; 
     Vector2 currentPosition;
     Vector2 targetPosition;
 
@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         itemList = new Item[3];
+        currentPosition = transform.position;
     }
 
     // Update is called once per frame
