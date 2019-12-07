@@ -7,15 +7,22 @@ public class GameState : MonoBehaviour
     GameObject clickedObject;
     Vector2 clickedPlace;
 
+
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if (Input.GetMouseButtonDown(0))
         {
-            switch (hit.collider.tag)
-            {
+            DoRaycast();
+        }
+    }
+
+    void DoRaycast()
+    {
+         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+         Debug.Log(hit.collider.tag);
+         switch (hit.collider.tag)
+         {
                 case "Client":
                     clickedPlace = Vector2.zero;
                     clickedObject = hit.collider.gameObject;
@@ -28,7 +35,7 @@ public class GameState : MonoBehaviour
                     break;
                 case "ActionPlace":
                     clickedPlace = hit.transform.position;
-                    //set active client target to this, then move client
+                    //set active client target to this, then move client, if no client active, then player go, check if place is taken
                     clickedObject = null;
                     break;
                 case "Floor":
@@ -38,7 +45,7 @@ public class GameState : MonoBehaviour
                     break;
                 default:
                     break;
-            }
+          
         }
     }
 }
