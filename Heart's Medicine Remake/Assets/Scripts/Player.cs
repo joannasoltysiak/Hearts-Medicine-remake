@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     Item[] itemList; 
     Vector2 currentPosition;
+    Vector3 targetPosition;
     AIDestinationSetter pathfindingTarget;
     
 
@@ -21,11 +22,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Vector3.Distance(targetPosition, transform.position) < 0.5f)
+        {
+            pathfindingTarget.target = transform;
+            targetPosition = Vector3.zero;
+        }
     }
 
     public void SetTargetPosition(Transform position)
     {
+        targetPosition = position.position;
         pathfindingTarget.target = position;
     }
 }

@@ -32,51 +32,59 @@ public class GameState : MonoBehaviour
         transform.position = mousePosition;
 
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-        Debug.Log(hit.collider.tag + " " + hit.transform);
+        Debug.Log(hit.collider.tag);
 
         switch (hit.collider.tag)
          {
-                case "Client":
-                    clickedPlace = null;
-                    clickedObject = hit.collider.gameObject;
-                    //make client active
-                    break;
-                case "Item":
-                    clickedObject = hit.collider.gameObject;
-                    clickedPlace = hit.transform;
+            case "Client":
+                clickedPlace = null;
+                clickedObject = hit.collider.gameObject;
+                //make client active
+                break;
+
+            case "Item":
+                clickedObject = hit.collider.gameObject;
+                clickedPlace = hit.transform;
+                player.SetTargetPosition(clickedPlace);
+                clickedPlace = null;
+                //set players target and when position is okay, take item
+                break;
+
+            case "ActionPlace":
+                clickedPlace = hit.transform;
+                //set active client target to this, then move client, if no client active, then player go, check if place is taken
+                if (clickedObject == null || clickedObject.tag == "Item")
+                {
                     player.SetTargetPosition(clickedPlace);
-                    //set players target and when position is okay, take item
-                    break;
-                case "ActionPlace":
-                    clickedPlace = hit.transform;
-                    //set active client target to this, then move client, if no client active, then player go, check if place is taken
-                    if (clickedObject == null || clickedObject.tag == "Item")
+                }
+                else
+                {
+                    ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
+
+                    if (place != null)
                     {
-                        player.SetTargetPosition(clickedPlace);
-                    }
-                    else
-                    {           
-                        ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
-
-                        if (place != null)
+                        if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                         {
-                            if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
-                            {
-                                Client client = clickedObject.GetComponent<Client>();
-                                client.SetTargetPosition(clickedPlace);
+                            Client client = clickedObject.GetComponent<Client>();
+                            client.SetTargetPosition(clickedPlace);
 
-                            }
                         }
                     }
-                    clickedObject = null;
-                    break;
-                case "Floor":
-                    clickedObject = null;
-                    clickedPlace = hit.transform;
-                    player.SetTargetPosition(transform);
-                    break;
-                default:
-                    break;
+                }
+                clickedObject = null;
+                clickedPlace = null;
+
+                break;
+
+            case "Floor":
+                clickedObject = null;
+                clickedPlace = hit.transform;
+                player.SetTargetPosition(transform);
+                clickedPlace = null;
+                break;
+
+            default:
+                break;
           
         }
     }
