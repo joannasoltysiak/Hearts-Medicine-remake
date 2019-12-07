@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 237945906}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlacePlaceholder (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: ActionPlace
+      objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -397,6 +402,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlacePlaceholder (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: ActionPlace
       objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
@@ -550,6 +560,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlacePlaceholder (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
@@ -738,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlacePlaceholder (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: ActionPlace
+      objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -816,6 +836,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlacePlaceholder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: ActionPlace
       objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
@@ -935,6 +960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlacePlaceholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660600, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
