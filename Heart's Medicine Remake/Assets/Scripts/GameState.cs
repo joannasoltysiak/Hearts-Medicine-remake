@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    GameObject clickedObject;
-    Vector2 clickedPlace;
+    public Player player;
 
+    GameObject clickedObject;
+    Transform clickedPlace;
+
+    Vector2 mousePosition;
+
+    private void Start()
+    {
+        clickedObject = null;
+        clickedPlace = null;
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,29 +28,41 @@ public class GameState : MonoBehaviour
 
     void DoRaycast()
     {
-         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-         Debug.Log(hit.collider.tag);
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = mousePosition;
+
+        RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+         Debug.Log(hit.collider.tag + " " + hit.transform);
          switch (hit.collider.tag)
          {
                 case "Client":
-                    clickedPlace = Vector2.zero;
+                    clickedPlace = null;
                     clickedObject = hit.collider.gameObject;
                     //make client active
                     break;
                 case "Item":
                     clickedObject = hit.collider.gameObject;
-                    clickedPlace = hit.transform.position;
-                    //set players target and when position is okay, take item
-                    break;
+                    clickedPlace = hit.transform;
+                player.SetTargetPosition(clickedPlace);
+                //set players target and when position is okay, take item
+                break;
                 case "ActionPlace":
-                    clickedPlace = hit.transform.position;
+                    clickedPlace = hit.transform;
                     //set active client target to this, then move client, if no client active, then player go, check if place is taken
+                    if(clickedObject.tag == "Item" || clickedObject == null)
+                {
+                    player.SetTargetPosition(clickedPlace);
+                }
+                else
+                {
+
+                }
                     clickedObject = null;
                     break;
                 case "Floor":
                     clickedObject = null;
-                    clickedPlace = hit.transform.position;
-                    //set player's target to this, in update move player
+                    clickedPlace = hit.transform;
+                    player.SetTargetPosition(transform);
                     break;
                 default:
                     break;
