@@ -32,8 +32,9 @@ public class GameState : MonoBehaviour
         transform.position = mousePosition;
 
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-         Debug.Log(hit.collider.tag + " " + hit.transform);
-         switch (hit.collider.tag)
+        Debug.Log(hit.collider.tag + " " + hit.transform);
+
+        switch (hit.collider.tag)
          {
                 case "Client":
                     clickedPlace = null;
@@ -43,20 +44,20 @@ public class GameState : MonoBehaviour
                 case "Item":
                     clickedObject = hit.collider.gameObject;
                     clickedPlace = hit.transform;
-                player.SetTargetPosition(clickedPlace);
-                //set players target and when position is okay, take item
-                break;
+                    player.SetTargetPosition(clickedPlace);
+                    //set players target and when position is okay, take item
+                    break;
                 case "ActionPlace":
                     clickedPlace = hit.transform;
                     //set active client target to this, then move client, if no client active, then player go, check if place is taken
-                    if(clickedObject.tag == "Item" || clickedObject == null)
-                {
-                    player.SetTargetPosition(clickedPlace);
-                }
-                else
-                {
+                    if (clickedObject == null || clickedObject.tag == "Item")
+                    {
+                        player.SetTargetPosition(clickedPlace);
+                    }
+                    else
+                    {
 
-                }
+                    }
                     clickedObject = null;
                     break;
                 case "Floor":

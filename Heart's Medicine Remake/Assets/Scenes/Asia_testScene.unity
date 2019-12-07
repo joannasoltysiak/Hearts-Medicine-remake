@@ -123,9 +123,10 @@ GameObject:
   - component: {fileID: 240412774}
   - component: {fileID: 240412775}
   - component: {fileID: 240412776}
+  - component: {fileID: 240412777}
   m_Layer: 8
   m_Name: Reception
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,6 +219,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &240412777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240412773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b27c79e05dae40ab1c280d77ee1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  client: {fileID: 0}
 --- !u!1 &681775160
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +265,6 @@ Transform:
   - {fileID: 703285119}
   - {fileID: 763864523}
   - {fileID: 1885076642}
-  - {fileID: 951109011}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -265,9 +279,10 @@ GameObject:
   - component: {fileID: 703285119}
   - component: {fileID: 703285120}
   - component: {fileID: 703285121}
+  - component: {fileID: 703285122}
   m_Layer: 8
   m_Name: Bed
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,6 +375,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &703285122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703285118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b27c79e05dae40ab1c280d77ee1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  client: {fileID: 0}
 --- !u!1 &733261101
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,9 +400,10 @@ GameObject:
   - component: {fileID: 733261102}
   - component: {fileID: 733261103}
   - component: {fileID: 733261104}
+  - component: {fileID: 733261105}
   m_Layer: 8
   m_Name: Waiting Seats
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,6 +496,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &733261105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733261101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b27c79e05dae40ab1c280d77ee1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  client: {fileID: 0}
 --- !u!1 &763864522
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,9 +521,10 @@ GameObject:
   - component: {fileID: 763864523}
   - component: {fileID: 763864524}
   - component: {fileID: 763864525}
+  - component: {fileID: 763864526}
   m_Layer: 8
   m_Name: Bed (1)
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,6 +617,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &763864526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763864522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b27c79e05dae40ab1c280d77ee1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  client: {fileID: 0}
 --- !u!1 &951109010
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +643,7 @@ GameObject:
   - component: {fileID: 951109012}
   m_Layer: 8
   m_Name: Chair (1)
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -597,11 +656,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951109010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -0.7877, z: 0.014164453}
-  m_LocalScale: {x: 1.8625, y: 1.0876919, z: 1}
+  m_LocalPosition: {x: 0, y: 0.23913924, z: 0}
+  m_LocalScale: {x: 1, y: 0.5507301, z: 1}
   m_Children: []
-  m_Father: {fileID: 681775161}
-  m_RootOrder: 5
+  m_Father: {fileID: 1885076642}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &951109012
 SpriteRenderer:
@@ -1066,7 +1125,7 @@ GameObject:
   - component: {fileID: 1885076644}
   m_Layer: 8
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: ActionPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1081,7 +1140,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.01, y: -1.26, z: 0.014164453}
   m_LocalScale: {x: 1.8625, y: 1.975, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 951109011}
   m_Father: {fileID: 681775161}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

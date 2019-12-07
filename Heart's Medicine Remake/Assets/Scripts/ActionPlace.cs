@@ -18,29 +18,10 @@ public class ActionPlace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            Debug.Log(Physics.Raycast(ray, out hit));
-            Debug.Log("Chcecking:" + hit.collider.tag);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log("Chcecking:" + hit.collider.tag);
-
-                if (hit.collider.tag == this.tag)
-                {
-                    Debug.Log("My object is clicked by mouse" + hit.collider.tag);
-                    
-                }
-            }
-        }
+        
     }
 
-    public void ifClicked()
+    public void Clicked()
     {
 
     }
