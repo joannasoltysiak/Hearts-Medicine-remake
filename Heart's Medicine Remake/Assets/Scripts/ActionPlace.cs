@@ -25,6 +25,11 @@ public class ActionPlace : MonoBehaviour
     {
 
     }
+
+    public void SetClient(Client client)
+    {
+        this.client = client;
+    }
 }
 
 public enum PlaceType

@@ -66,8 +66,7 @@ public class GameState : MonoBehaviour
                         if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                         {
                             Client client = clickedObject.GetComponent<Client>();
-                            client.SetTargetPosition(clickedPlace);
-
+                            client.SetTargetPosition(clickedPlace, place);
                         }
                     }
                 }

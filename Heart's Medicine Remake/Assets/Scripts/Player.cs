@@ -35,3 +35,4 @@ public class Player : MonoBehaviour
         pathfindingTarget.target = position;
     }
 }
+
