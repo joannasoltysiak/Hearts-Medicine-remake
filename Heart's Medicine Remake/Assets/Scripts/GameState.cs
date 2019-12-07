@@ -56,6 +56,15 @@ public class GameState : MonoBehaviour
                     }
                     else
                     {
+                        if (clickedObject.tag == "Client")
+                        {
+                            if (clickedObject != null)
+                            {
+                                Client client = clickedObject.GetComponent<Client>();                      
+                                client.SetTargetPosition(clickedPlace);
+                            }
+
+                        }
 
                     }
                     clickedObject = null;
