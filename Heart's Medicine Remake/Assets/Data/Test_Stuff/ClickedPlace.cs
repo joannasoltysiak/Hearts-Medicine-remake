@@ -17,16 +17,7 @@ public class ClickedPlace : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mousePosition = Input.mousePosition;
-            mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            //transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-
-
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                //Input.mousePosition;
-
-            Debug.Log("hit : " + transform.position);
-            Debug.Log("hit : " + Input.mousePosition);
         }
     }
 }
