@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   bubble: {fileID: 1239353933}
+  activeAction: 0
 --- !u!114 &446705437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  client: {fileID: 0}
 --- !u!114 &664207409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,7 +538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  client: {fileID: 0}
 --- !u!114 &796505135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +620,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2de40827340d2fb46bd88869a7e8a00d, type: 3}
-  m_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -876,6 +875,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.895
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
 --- !u!4 &1079746998 stripped
@@ -939,7 +953,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b63c4d3d8c998a047afc5d686f4bd2bc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1298,7 +1312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  client: {fileID: 0}
 --- !u!114 &1422581571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,6 +1412,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.999
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
 --- !u!4 &1701275802 stripped
@@ -1426,7 +1454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  client: {fileID: 0}
 --- !u!114 &1870895140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,6 +1548,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 2.2052238
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.05725074
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -1645,6 +1687,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.49326995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.14361954
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -1928,7 +1985,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  client: {fileID: 0}
 --- !u!114 &2144932250
 MonoBehaviour:
   m_ObjectHideFlags: 0

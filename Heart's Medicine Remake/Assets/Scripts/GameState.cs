@@ -1,14 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
     public Player player;
-
-    public Text pointsText;
-    public static int points;
 
     GameObject clickedObject;
     Transform clickedPlace;
@@ -19,8 +15,6 @@ public class GameState : MonoBehaviour
     {
         clickedObject = null;
         clickedPlace = null;
-
-        points = 0;
     }
 
     // Update is called once per frame
@@ -30,8 +24,6 @@ public class GameState : MonoBehaviour
         {
             DoRaycast();
         }
-
-        pointsText.text = "Points: " + points;
     }
 
     void DoRaycast()
@@ -47,6 +39,9 @@ public class GameState : MonoBehaviour
             case "Client":
                 clickedPlace = null;
                 clickedObject = hit.collider.gameObject;
+                Client client1 = clickedObject.GetComponent<Client>();
+                if(client1.state == ClientState.WaitingForAction)
+                    player.SetTargetPosition(transform);
                 //make client active
                 break;
 
@@ -74,7 +69,13 @@ public class GameState : MonoBehaviour
                         if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                         {
                             Client client = clickedObject.GetComponent<Client>();
-                            client.SetTargetPosition(clickedPlace, place);
+                            if (client.state == ClientState.WaitingToBePlaced)
+                            {
+                                client.SetTargetPosition(clickedPlace, place);
+                            }else if(client.state == ClientState.WaitingForAction)
+                            {
+                                player.SetTargetPosition(transform);
+                            }
                         }
                     }
                 }

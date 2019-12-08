@@ -12,17 +12,27 @@ public class Client : MonoBehaviour
     ActionPlace targetPlace;
     public SpriteRenderer bubble;
 
+    public Actions activeAction;
     int numberOfActions;
 
+    PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
 
     // Start is called before the first frame update
     void Start()
     {
-        state = ClientState.Walking;
+        state = ClientState.WaitingToBePlaced;
+        activeAction = Actions.None;
 
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
+
+        if (Random.Range(0, 1) == 0)
+            wantedPlace = PlaceType.Bed;
+        else
+            wantedPlace = PlaceType.Chair;
+
+        ChangeBubble();
 
         numberOfActions = Random.Range(1, 3);
     }
@@ -30,13 +40,23 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(targetPosition, transform.position) < 1.5f) // we have to change target to the place next to the place
+        if (Vector3.Distance(targetPosition, transform.position) < 1.5f && state == ClientState.Walking) // we have to change target to the place next to the place
         {
+            state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
-
-            bubble.color = new Color(255,255,255, 255);
+            
             targetPlace.SetClient(this);
+        }
+
+        if(state == ClientState.WaitingForAction)
+        {
+
+        }
+
+        if(state == ClientState.WaitingToPay)
+        {
+
         }
 
     }
@@ -46,13 +66,38 @@ public class Client : MonoBehaviour
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
+
+        state = ClientState.Walking;
+        ChangeBubble();
     }
-    
+
     public void ChangeBubble()
     {
+        switch (wantedPlace)
+        {
+            case PlaceType.Bed:
+                bubble.color = new Color(255, 0, 0, 255);
+                break;
+            case PlaceType.Chair:
+                bubble.color = new Color(0, 0, 255, 255);
+                break;
+        }
+
+        switch (activeAction) // colour is placeholder for graphics
+        {
+            case Actions.DoCheckup:
+                bubble.color = new Color(0, 0, 0, 255);
+                break;
+            case Actions.CheckTemperature:
+                bubble.color = new Color(0, 255, 0, 255);
+                break;
+        }
+
+        if (state == ClientState.Walking)
+            bubble.color = new Color(0, 0, 0, 0);
 
     }
-    
+
 }
 
 public enum ClientState
