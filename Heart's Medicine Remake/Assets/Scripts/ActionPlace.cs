@@ -51,6 +51,11 @@ public class ActionPlace : MonoBehaviour
         else
             return true;
     }
+
+    public void MakeEmpty()
+    {
+        client = null; //how to do it??
+    }
 }
 
 public enum PlaceType
