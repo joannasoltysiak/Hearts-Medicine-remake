@@ -45,6 +45,8 @@ public class Client : MonoBehaviour
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
+            
+            
         }
 
         if(state == ClientState.WaitingForAction)
@@ -64,6 +66,7 @@ public class Client : MonoBehaviour
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
+
 
         state = ClientState.Walking;
         ChangeBubble();
