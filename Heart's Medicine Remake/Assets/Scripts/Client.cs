@@ -15,6 +15,7 @@ public class Client : MonoBehaviour
     public Actions activeAction;
     int numberOfActions;
 
+    PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
 
     // Start is called before the first frame update
@@ -25,6 +26,13 @@ public class Client : MonoBehaviour
 
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
+
+        if (Random.Range(0, 1) == 0)
+            wantedPlace = PlaceType.Bed;
+        else
+            wantedPlace = PlaceType.Chair;
+
+        ChangeBubble();
 
         numberOfActions = Random.Range(1, 3);
     }
@@ -65,8 +73,15 @@ public class Client : MonoBehaviour
 
     public void ChangeBubble()
     {
-        if (state == ClientState.Walking)
-            bubble.color = new Color(0, 0, 0, 0);
+        switch (wantedPlace)
+        {
+            case PlaceType.Bed:
+                bubble.color = new Color(255, 0, 0, 255);
+                break;
+            case PlaceType.Chair:
+                bubble.color = new Color(0, 0, 255, 255);
+                break;
+        }
 
         switch (activeAction) // colour is placeholder for graphics
         {
@@ -77,6 +92,9 @@ public class Client : MonoBehaviour
                 bubble.color = new Color(0, 255, 0, 255);
                 break;
         }
+
+        if (state == ClientState.Walking)
+            bubble.color = new Color(0, 0, 0, 0);
 
     }
 
