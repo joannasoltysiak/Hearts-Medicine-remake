@@ -7,7 +7,6 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
-    public ItemType item;
 
     //public GameState gameState;
 
