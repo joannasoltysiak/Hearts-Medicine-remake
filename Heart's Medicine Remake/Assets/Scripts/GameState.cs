@@ -47,15 +47,17 @@ public class GameState : MonoBehaviour
                 clickedPlace = null;
                 clickedObject = hit.collider.gameObject;
                 Client client1 = clickedObject.GetComponent<Client>();
-                if(client1.state == ClientState.WaitingForAction)
-                    player.SetTargetPosition(transform);
+                if (client1.state == ClientState.WaitingForAction)
+                {
+                    player.SetTargetPosition(transform,client1);
+                }
                 //make client active
                 break;
 
             case "Item":
                 clickedObject = hit.collider.gameObject;
                 clickedPlace = hit.transform;
-                player.SetTargetPosition(clickedPlace);
+                player.SetTargetPosition(clickedPlace, null);
                 clickedPlace = null;
                 //set players target and when position is okay, take item
                 break;
@@ -65,7 +67,7 @@ public class GameState : MonoBehaviour
                 //set active client target to this, then move client, if no client active, then player go, check if place is taken
                 if (clickedObject == null || clickedObject.tag == "Item")
                 {
-                    player.SetTargetPosition(clickedPlace);
+                    player.SetTargetPosition(clickedPlace,null);
                 }
                 else
                 {
@@ -76,14 +78,14 @@ public class GameState : MonoBehaviour
                         if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                         {
                             Client client = clickedObject.GetComponent<Client>();
-                            if (client.state == ClientState.WaitingToBePlaced && !place.IsTaken())
+                            if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
                             {
                                 client.SetTargetPosition(clickedPlace, place);
                                 place.SetClient(client);
                             }
                             else if(client.state == ClientState.WaitingForAction)
                             {
-                                player.SetTargetPosition(transform);
+                                player.SetTargetPosition(transform,client);
                             }
                         }
                     }
@@ -96,7 +98,7 @@ public class GameState : MonoBehaviour
             case "Floor":
                 clickedObject = null;
                 clickedPlace = hit.transform;
-                player.SetTargetPosition(transform);
+                player.SetTargetPosition(transform, null);
                 clickedPlace = null;
                 break;
 

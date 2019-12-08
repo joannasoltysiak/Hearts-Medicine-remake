@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     public Actions activeAction;
     int numberOfActions;
 
-    PlaceType wantedPlace;
+    public PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
 
     // Start is called before the first frame update
@@ -47,11 +47,6 @@ public class Client : MonoBehaviour
             targetPosition = Vector3.zero;
             
             
-        }
-
-        if(state == ClientState.WaitingForAction)
-        {
-
         }
 
         if(state == ClientState.WaitingToPay)
@@ -98,6 +93,7 @@ public class Client : MonoBehaviour
             bubble.color = new Color(0, 0, 0, 0);
 
     }
+    
 
 }
 

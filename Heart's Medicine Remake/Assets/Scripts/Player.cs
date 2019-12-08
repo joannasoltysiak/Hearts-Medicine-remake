@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     Vector2 currentPosition;
     Vector3 targetPosition;
     AIDestinationSetter pathfindingTarget;
-    
+
+    Client clientToHelp;
 
     // Start is called before the first frame update
     void Start()
     {
+        clientToHelp = null;
         itemList = new Item[3];
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
@@ -26,13 +28,32 @@ public class Player : MonoBehaviour
         {
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
+
+            if(clientToHelp != null)
+            {
+                
+            }
         }
     }
 
-    public void SetTargetPosition(Transform position)
+    bool CheckHelp()
+    {
+        switch (clientToHelp.activeAction)
+        {
+            case Actions.CheckTemperature:
+                return true;
+            case Actions.DoCheckup:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public void SetTargetPosition(Transform position, Client clientToHelp)
     {
         targetPosition = position.position;
         pathfindingTarget.target = position;
+        this.clientToHelp = clientToHelp;
     }
 }
 

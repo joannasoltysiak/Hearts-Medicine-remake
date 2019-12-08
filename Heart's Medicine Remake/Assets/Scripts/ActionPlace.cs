@@ -69,7 +69,6 @@ public enum PlaceType
 public enum Actions
 {
     None,
-    GetTermometr,
     DoCheckup,
     CheckTemperature
 }
