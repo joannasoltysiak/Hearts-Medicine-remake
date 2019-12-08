@@ -39,6 +39,9 @@ public class GameState : MonoBehaviour
             case "Client":
                 clickedPlace = null;
                 clickedObject = hit.collider.gameObject;
+                Client client1 = clickedObject.GetComponent<Client>();
+                if(client1.state == ClientState.WaitingForAction)
+                    player.SetTargetPosition(transform);
                 //make client active
                 break;
 
@@ -66,8 +69,13 @@ public class GameState : MonoBehaviour
                         if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                         {
                             Client client = clickedObject.GetComponent<Client>();
-                            if(client.state == ClientState.WaitingToBePlaced)
+                            if (client.state == ClientState.WaitingToBePlaced)
+                            {
                                 client.SetTargetPosition(clickedPlace, place);
+                            }else if(client.state == ClientState.WaitingForAction)
+                            {
+                                player.SetTargetPosition(transform);
+                            }
                         }
                     }
                 }

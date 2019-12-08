@@ -32,13 +32,23 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(targetPosition, transform.position) < 1.5f) // we have to change target to the place next to the place
+        if (Vector3.Distance(targetPosition, transform.position) < 1.5f && state == ClientState.Walking) // we have to change target to the place next to the place
         {
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
             
             targetPlace.SetClient(this);
+        }
+
+        if(state == ClientState.WaitingForAction)
+        {
+
+        }
+
+        if(state == ClientState.WaitingToPay)
+        {
+
         }
 
     }
