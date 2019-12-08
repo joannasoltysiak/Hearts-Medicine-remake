@@ -40,11 +40,6 @@ public class ActionPlace : MonoBehaviour
         //checking if player comes and if they got everything needed for active action
     }
 
-    public void Clicked()
-    {
-
-    }
-
     public void SetClient(Client client)
     {
         this.client = client;
