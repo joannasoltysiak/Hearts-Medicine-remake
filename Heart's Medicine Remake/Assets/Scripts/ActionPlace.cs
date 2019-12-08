@@ -7,7 +7,6 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
-    Actions activeAction;
 
     //public GameState gameState;
 
@@ -15,12 +14,11 @@ public class ActionPlace : MonoBehaviour
     void Start()
     {
         client = null;
-        activeAction = Actions.None;
 
         switch (type)
         {
             case PlaceType.Bed:
-                possibleActions = new Actions[]{ Actions.CheckTemperature, Actions.CheckTemperature };
+                possibleActions = new Actions[]{ Actions.DoCheckup, Actions.CheckTemperature };
                 break;
             case PlaceType.Chair:
                 possibleActions = new Actions[] { Actions.DoCheckup };
@@ -31,15 +29,14 @@ public class ActionPlace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(client != null && activeAction == Actions.None)
+        if(client != null && client.activeAction == Actions.None)
         {
             int random = Random.Range(0, possibleActions.Length - 1);
-            activeAction = possibleActions[random];
+            client.activeAction = possibleActions[random];
 
             client.ChangeBubble(); //showing what client wants (need to implement)
         }
-
-        //checking if player comes and if they got everything needed for active action
+        
     }
 
     public void Clicked()
@@ -55,16 +52,10 @@ public class ActionPlace : MonoBehaviour
 
 public enum PlaceType
 {
+    None,           //specially for client
     Bed,            //place for Client to lay down -> bed actions
     WaitingSeats,   //place where Client wait to be picked
     Reception,      //where Client wait to pay
     Chair           //place for Client to sit -> chair actions
 }
 
-public enum Actions
-{
-    None,
-    GetTermometr,
-    DoCheckup,
-    CheckTemperature
-}

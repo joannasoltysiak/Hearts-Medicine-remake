@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   bubble: {fileID: 1239353933}
+  activeAction: 0
 --- !u!114 &446705437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  client: {fileID: 0}
 --- !u!114 &664207409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,7 +538,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  client: {fileID: 0}
 --- !u!114 &796505135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +874,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.895
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -1298,7 +1312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  client: {fileID: 0}
 --- !u!114 &1422581571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,6 +1412,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.999
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
 --- !u!4 &1701275802 stripped
@@ -1426,7 +1454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  client: {fileID: 0}
 --- !u!114 &1870895140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,6 +1548,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 2.2052238
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.18100357
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -1645,6 +1687,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.49326995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.21875906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -1928,7 +1985,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  client: {fileID: 0}
 --- !u!114 &2144932250
 MonoBehaviour:
   m_ObjectHideFlags: 0

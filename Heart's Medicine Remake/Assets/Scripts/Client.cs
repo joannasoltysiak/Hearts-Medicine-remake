@@ -12,6 +12,9 @@ public class Client : MonoBehaviour
     ActionPlace targetPlace;
     public SpriteRenderer bubble;
 
+    public Actions activeAction;
+    PlaceType wantedPlace;
+
     int numberOfActions;
 
     AIDestinationSetter pathfindingTarget;
@@ -24,7 +27,10 @@ public class Client : MonoBehaviour
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
 
+        activeAction = Actions.None;
+        
         numberOfActions = Random.Range(1, 3);
+
     }
 
     // Update is called once per frame
@@ -32,10 +38,10 @@ public class Client : MonoBehaviour
     {
         if (Vector3.Distance(targetPosition, transform.position) < 1.5f) // we have to change target to the place next to the place
         {
+            state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
-
-            bubble.color = new Color(255,255,255, 255);
+            
             targetPlace.SetClient(this);
         }
 
@@ -50,6 +56,24 @@ public class Client : MonoBehaviour
     
     public void ChangeBubble()
     {
+        switch (activeAction) // colour is placeholder for graphics
+        {
+            case Actions.CheckTemperature:
+                bubble.color = new Color(0, 0, 0, 255);
+                break;
+            case Actions.DoCheckup:
+                bubble.color = new Color(0, 0, 0, 255);
+                break;
+            case Actions.GetTermometr:
+                bubble.color = new Color(0, 255, 0, 255);
+                break;
+        }
+
+        
+    }
+
+    public void CompleteTheTask()
+    {
 
     }
     
@@ -62,4 +86,11 @@ public enum ClientState
     WaitingForAction,       //after being in the right place the timer for action
     WaitingToPay,           //no timer, last state
 
+}
+
+public enum Actions
+{
+    None,
+    DoCheckup,
+    CheckTemperature
 }
