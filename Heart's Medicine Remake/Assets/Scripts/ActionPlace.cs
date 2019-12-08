@@ -48,6 +48,14 @@ public class ActionPlace : MonoBehaviour
     {
         this.client = client;
     }
+
+    public bool IsTaken()
+    {
+        if (client == null)
+            return false;
+        else
+            return true;
+    }
 }
 
 public enum PlaceType
