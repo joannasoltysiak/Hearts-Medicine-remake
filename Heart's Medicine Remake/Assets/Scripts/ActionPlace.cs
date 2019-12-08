@@ -7,7 +7,6 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
-    Actions activeAction;
 
     //public GameState gameState;
 
@@ -15,7 +14,6 @@ public class ActionPlace : MonoBehaviour
     void Start()
     {
         client = null;
-        activeAction = Actions.None;
 
         switch (type)
         {
@@ -31,10 +29,10 @@ public class ActionPlace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(client != null && activeAction == Actions.None)
+        if(client != null && client.activeAction == Actions.None)
         {
             int random = Random.Range(0, possibleActions.Length - 1);
-            activeAction = possibleActions[random];
+            client.activeAction = possibleActions[random];
 
             client.ChangeBubble(); //showing what client wants (need to implement)
         }

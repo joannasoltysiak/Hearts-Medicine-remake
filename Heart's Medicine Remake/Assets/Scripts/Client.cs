@@ -12,6 +12,7 @@ public class Client : MonoBehaviour
     ActionPlace targetPlace;
     public SpriteRenderer bubble;
 
+    public Actions activeAction;
     int numberOfActions;
 
     AIDestinationSetter pathfindingTarget;
@@ -23,6 +24,7 @@ public class Client : MonoBehaviour
 
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
+        activeAction = Actions.None;
 
         numberOfActions = Random.Range(1, 3);
     }
