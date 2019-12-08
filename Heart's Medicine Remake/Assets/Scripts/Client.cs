@@ -20,7 +20,7 @@ public class Client : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = ClientState.Walking;
+        state = ClientState.WaitingToBePlaced;
         activeAction = Actions.None;
 
         currentPosition = transform.position;
@@ -34,10 +34,10 @@ public class Client : MonoBehaviour
     {
         if (Vector3.Distance(targetPosition, transform.position) < 1.5f) // we have to change target to the place next to the place
         {
+            state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
-
-            bubble.color = new Color(255,255,255, 255);
+            
             targetPlace.SetClient(this);
         }
 
@@ -48,13 +48,28 @@ public class Client : MonoBehaviour
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
+
+        state = ClientState.Walking;
+        ChangeBubble();
     }
-    
+
     public void ChangeBubble()
     {
+        if (state == ClientState.Walking)
+            bubble.color = new Color(0, 0, 0, 0);
+
+        switch (activeAction) // colour is placeholder for graphics
+        {
+            case Actions.DoCheckup:
+                bubble.color = new Color(0, 0, 0, 255);
+                break;
+            case Actions.CheckTemperature:
+                bubble.color = new Color(0, 255, 0, 255);
+                break;
+        }
 
     }
-    
+
 }
 
 public enum ClientState
