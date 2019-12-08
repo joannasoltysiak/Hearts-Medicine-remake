@@ -49,15 +49,15 @@ public class GameState : MonoBehaviour
                 Client client1 = clickedObject.GetComponent<Client>();
                 if (client1.state == ClientState.WaitingForAction)
                 {
-                    player.SetTargetPosition(transform,client1);
+                    player.SetTargetPosition(transform,client1,ItemType.None);
                 }
                 //make client active
                 break;
 
             case "Item":
-                clickedObject = hit.collider.gameObject;
                 clickedPlace = hit.transform;
-                player.SetTargetPosition(clickedPlace, null);
+                Item itemPlace = hit.collider.gameObject.GetComponent<Item>();
+                player.SetTargetPosition(clickedPlace, null, itemPlace.item);
                 clickedPlace = null;
                 //set players target and when position is okay, take item
                 break;
@@ -65,9 +65,9 @@ public class GameState : MonoBehaviour
             case "ActionPlace":
                 clickedPlace = hit.transform;
                 //set active client target to this, then move client, if no client active, then player go, check if place is taken
-                if (clickedObject == null || clickedObject.tag == "Item")
+                if (clickedObject == null)
                 {
-                    player.SetTargetPosition(clickedPlace,null);
+                    player.SetTargetPosition(clickedPlace,null, ItemType.None);
                 }
                 else
                 {
@@ -85,7 +85,7 @@ public class GameState : MonoBehaviour
                             }
                             else if(client.state == ClientState.WaitingForAction)
                             {
-                                player.SetTargetPosition(transform,client);
+                                player.SetTargetPosition(transform,client,ItemType.None);
                             }
                         }
                     }
@@ -98,7 +98,7 @@ public class GameState : MonoBehaviour
             case "Floor":
                 clickedObject = null;
                 clickedPlace = hit.transform;
-                player.SetTargetPosition(transform, null);
+                player.SetTargetPosition(transform, null,ItemType.None);
                 clickedPlace = null;
                 break;
 

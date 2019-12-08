@@ -414,6 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  item: 0
 --- !u!114 &664207409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  item: 0
 --- !u!114 &796505135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: -20}
+  m_AnchoredPosition: {x: -169, y: 86.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1271828368
@@ -1185,6 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38742cb390aef24ea4a2eaaeba66345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemList: 
 --- !u!1001 &1386401044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1395,6 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  item: 0
 --- !u!114 &1422581571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1625,6 +1629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  item: 0
 --- !u!114 &1870895140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,6 +1767,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorToTurnTo: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+--- !u!114 &1923053840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923053836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d239b74ba6644eb61eec1614c40ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: 1
 --- !u!1001 &1923262210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1849,6 +1867,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.947
       objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660601, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.253365
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053014299566660601, guid: ee17e256eb4e650428948489c18dd167,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.49326995
+      objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660607, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
       propertyPath: m_Color.r
@@ -1863,16 +1891,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2053014299566660601, guid: ee17e256eb4e650428948489c18dd167,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.253365
-      objectReference: {fileID: 0}
-    - target: {fileID: 2053014299566660601, guid: ee17e256eb4e650428948489c18dd167,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.49326995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee17e256eb4e650428948489c18dd167, type: 3}
@@ -2158,6 +2176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  item: 0
 --- !u!114 &2144932250
 MonoBehaviour:
   m_ObjectHideFlags: 0

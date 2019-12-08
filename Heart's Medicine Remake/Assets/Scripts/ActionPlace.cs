@@ -7,6 +7,7 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
+    public ItemType item;
 
     //public GameState gameState;
 
@@ -37,11 +38,6 @@ public class ActionPlace : MonoBehaviour
             client.ChangeBubble(); //showing what client wants (need to implement)
         }
         
-    }
-
-    public void Clicked()
-    {
-
     }
 
     public void SetClient(Client client)

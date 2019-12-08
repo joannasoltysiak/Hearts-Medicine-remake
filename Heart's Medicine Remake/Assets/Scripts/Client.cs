@@ -45,8 +45,6 @@ public class Client : MonoBehaviour
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
-            
-            
         }
 
         if(state == ClientState.WaitingToPay)
