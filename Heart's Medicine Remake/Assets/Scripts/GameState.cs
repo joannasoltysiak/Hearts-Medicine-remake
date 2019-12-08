@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour
 {
     public Player player;
+    public static int points;
+    public Text pointsInfo;
 
     GameObject clickedObject;
     Transform clickedPlace;
@@ -15,6 +18,8 @@ public class GameState : MonoBehaviour
     {
         clickedObject = null;
         clickedPlace = null;
+        points = 0;
+        pointsInfo.text = "Points: 0";
     }
 
     // Update is called once per frame
@@ -24,6 +29,8 @@ public class GameState : MonoBehaviour
         {
             DoRaycast();
         }
+
+        pointsInfo.text = "Points: " + points;
     }
 
     void DoRaycast()
