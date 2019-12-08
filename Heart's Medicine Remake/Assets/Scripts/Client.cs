@@ -27,7 +27,7 @@ public class Client : MonoBehaviour
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
 
-        if (Random.Range(0, 1) == 0)
+        if (Random.Range(0, 2) == 0)
             wantedPlace = PlaceType.Bed;
         else
             wantedPlace = PlaceType.Chair;
@@ -45,8 +45,6 @@ public class Client : MonoBehaviour
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
-            
-            targetPlace.SetClient(this);
         }
 
         if(state == ClientState.WaitingForAction)
