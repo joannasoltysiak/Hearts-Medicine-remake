@@ -56,7 +56,6 @@ public class GameState : MonoBehaviour
             case "Item":
                 clickedPlace = hit.transform;
                 Item itemPlace = hit.collider.gameObject.GetComponent<Item>();
-                itemPlace.GetPosition(PositionType.Same);
                 player.SetTargetPosition(clickedPlace, null, itemPlace.item);
                 clickedPlace = null;
                 break;
@@ -66,7 +65,6 @@ public class GameState : MonoBehaviour
                 ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
                 if (clickedObject == null)
                 {
-                    SetPositionNextToPlace(place);
                     player.SetTargetPosition(clickedPlace,null, ItemType.None);
                 }
                 else if (place != null)
@@ -76,13 +74,12 @@ public class GameState : MonoBehaviour
                         Client client = clickedObject.GetComponent<Client>();
                         if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
                         {
-                            client.SetTargetPosition(clickedPlace, place);
+                            client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
                             place.SetClient(client);
                         }
                         else if(client.state == ClientState.WaitingForAction)
                         {
-                            SetPositionNextToPlace(place);
-                            player.SetTargetPosition(transform,client,ItemType.None);
+                            player.SetTargetPosition(transform ,client,ItemType.None);
                         }
                     }
                 }
@@ -105,11 +102,19 @@ public class GameState : MonoBehaviour
         }
     }
 
-    void SetPositionNextToPlace(ActionPlace place)
+    Transform SetPositionNextToPlace(ActionPlace place, PositionType position, Transform clickedPlace)
     {
         if (place.type == PlaceType.Bed)
-            transform.position = place.GetPosition(PositionType.Same);
+        {
+            clickedPlace = place.GetPosition(PositionType.Same);
+            return clickedPlace;
+        }
         else if (place.type == PlaceType.Chair)
-            transform.position = place.GetPosition(PositionType.ForPlayer);
+        {
+            clickedPlace = place.GetPosition(position);
+            return clickedPlace;
+        }
+        else
+            return null;
     }
 }

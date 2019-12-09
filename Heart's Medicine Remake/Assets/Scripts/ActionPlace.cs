@@ -14,6 +14,7 @@ public class ActionPlace : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        placeForStanding = transform;
         client = null;
 
         switch (type)
@@ -58,7 +59,7 @@ public class ActionPlace : MonoBehaviour
         client = null;
     }
 
-    public void GetPosition(PositionType type)
+    public Transform GetPosition(PositionType type)
     {
         switch (type)
         {
@@ -75,6 +76,7 @@ public class ActionPlace : MonoBehaviour
                 placeForStanding.position = new Vector2(transform.position.x,transform.position.y);
                 break;
         }
+        return placeForStanding;
     }
 }
 
