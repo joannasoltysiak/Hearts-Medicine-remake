@@ -46,21 +46,17 @@ public class Player : MonoBehaviour
                 if (isHelped)
                 {
                     clientToHelp.activeAction = Actions.None;
-<<<<<<< HEAD
+                    clientToHelp.targetPlace.MakeEmpty();
                     if (clientToHelp.NeedsMoreAction())
                     {
+
                         clientToHelp.state = ClientState.WaitingToBePlaced;
                         if (Random.Range(0, 2) == 0)
                             clientToHelp.wantedPlace = PlaceType.Bed;
                         else
                             clientToHelp.wantedPlace = PlaceType.Chair;
                     }
-=======
-                    clientToHelp.targetPlace.MakeEmpty();
-                    clientToHelp.state = ClientState.WaitingToBePlaced;
-                    if (Random.Range(0, 2) == 0)
-                        clientToHelp.wantedPlace = PlaceType.Bed;
->>>>>>> kinga-branch
+
                     else
                     {
                         clientToHelp.state = ClientState.WaitingForAction;
