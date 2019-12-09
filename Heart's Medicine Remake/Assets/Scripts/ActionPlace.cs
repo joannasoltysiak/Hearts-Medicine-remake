@@ -7,6 +7,7 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
+    Transform placeForStanding;
 
     //public GameState gameState;
 
@@ -57,9 +58,23 @@ public class ActionPlace : MonoBehaviour
         client = null;
     }
 
-    public Vector2 GetPosition()
+    public void GetPosition(PositionType type)
     {
-        return Vector2.zero;
+        switch (type)
+        {
+            case PositionType.ForClient:
+                placeForStanding.position =  new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2);
+                break;
+            case PositionType.ForPlayer:
+                placeForStanding.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - transform.localScale.y / 2);
+                break;
+            case PositionType.Same:
+                placeForStanding.position = new Vector2(transform.position.x, transform.position.y - transform.localScale.y/2);
+                break;
+            default:
+                placeForStanding.position = new Vector2(transform.position.x,transform.position.y);
+                break;
+        }
     }
 }
 

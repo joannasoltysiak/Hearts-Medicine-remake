@@ -51,45 +51,42 @@ public class GameState : MonoBehaviour
                 {
                     player.SetTargetPosition(transform,client1,ItemType.None);
                 }
-                //make client active
                 break;
 
             case "Item":
                 clickedPlace = hit.transform;
                 Item itemPlace = hit.collider.gameObject.GetComponent<Item>();
+                itemPlace.GetPosition(PositionType.Same);
                 player.SetTargetPosition(clickedPlace, null, itemPlace.item);
                 clickedPlace = null;
-                //set players target and when position is okay, take item
                 break;
 
             case "ActionPlace":
                 clickedPlace = hit.transform;
-                //set active client target to this, then move client, if no client active, then player go, check if place is taken
+                ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
                 if (clickedObject == null)
                 {
+                    SetPositionNextToPlace(place);
                     player.SetTargetPosition(clickedPlace,null, ItemType.None);
                 }
-                else
+                else if (place != null)
                 {
-                    ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
-
-                    if (place != null)
+                    if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                     {
-                        if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
+                        Client client = clickedObject.GetComponent<Client>();
+                        if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
                         {
-                            Client client = clickedObject.GetComponent<Client>();
-                            if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
-                            {
-                                client.SetTargetPosition(clickedPlace, place);
-                                place.SetClient(client);
-                            }
-                            else if(client.state == ClientState.WaitingForAction)
-                            {
-                                player.SetTargetPosition(transform,client,ItemType.None);
-                            }
+                            client.SetTargetPosition(clickedPlace, place);
+                            place.SetClient(client);
+                        }
+                        else if(client.state == ClientState.WaitingForAction)
+                        {
+                            SetPositionNextToPlace(place);
+                            player.SetTargetPosition(transform,client,ItemType.None);
                         }
                     }
                 }
+                
                 clickedObject = null;
                 clickedPlace = null;
 
@@ -106,5 +103,13 @@ public class GameState : MonoBehaviour
                 break;
           
         }
+    }
+
+    void SetPositionNextToPlace(ActionPlace place)
+    {
+        if (place.type == PlaceType.Bed)
+            transform.position = place.GetPosition(PositionType.Same);
+        else if (place.type == PlaceType.Chair)
+            transform.position = place.GetPosition(PositionType.ForPlayer);
     }
 }
