@@ -65,7 +65,7 @@ public class ActionPlace : MonoBehaviour
         client = null;
     }
 
-    public Transform GetPosition(PositionType type)
+    public Transform GetPosition(PositionType type) //sets position where client or player will stand after clicking this object
     {
         switch (type)
         {
