@@ -13,7 +13,7 @@ public class Item : MonoBehaviour
         placeForStanding.transform.position = transform.position;
     }
 
-        public Transform GetPosition(PositionType type)
+        public Transform GetPosition(PositionType type)//sets position where player will stand after clicking this object
     {
         switch (type)
         {

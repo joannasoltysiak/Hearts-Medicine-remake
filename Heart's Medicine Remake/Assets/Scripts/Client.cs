@@ -44,7 +44,7 @@ public class Client : MonoBehaviour
     {
         
         if ((Mathf.Abs(targetPosition.x - transform.position.x) < 0.2f  && Mathf.Abs(targetPosition.y - transform.position.y) < 0.2f ) 
-            && state == ClientState.Walking) // we have to change target to the place next to the place
+            && state == ClientState.Walking)
         {
             Debug.Log(Vector3.Distance(targetPosition, transform.position));
             state = ClientState.WaitingForAction;

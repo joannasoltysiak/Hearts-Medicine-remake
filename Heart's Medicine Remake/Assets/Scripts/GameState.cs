@@ -37,9 +37,10 @@ public class GameState : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mousePosition;
-
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
         Debug.Log(hit.collider.tag);
+
+        //By raycasting we get objects that we click on, then we classify the object by its tag and we keep it in the memory for actions. Each Object has its own action
 
         switch (hit.collider.tag)
          {
@@ -70,11 +71,11 @@ public class GameState : MonoBehaviour
             case "ActionPlace":
                 clickedPlace = hit.transform;
                 ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
-                if (clickedObject == null)
+                if (clickedObject == null)//player can come to the place without any action
                 {
                     player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                 }
-                else if (place.IsTaken())
+                else if (place.IsTaken()) //player comes over to help the client
                 {
                     player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), place.GetClient(), ItemType.None);
                 }
@@ -83,12 +84,12 @@ public class GameState : MonoBehaviour
                     if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                     {
                         Client client = clickedObject.GetComponent<Client>();
-                        if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
+                        if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())//moving client to the specific place
                         {
                             client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
                             place.SetClient(client);
                         }
-                        else if(client.state == ClientState.WaitingForAction)
+                        else if(client.state == ClientState.WaitingForAction)//cant move client who is waiting for action
                         {
                             player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                         }
@@ -113,7 +114,7 @@ public class GameState : MonoBehaviour
         }
     }
 
-    Transform SetPositionNextToPlace(ActionPlace place, PositionType position, Transform clickedPlace)
+    Transform SetPositionNextToPlace(ActionPlace place, PositionType position, Transform clickedPlace) //sets position where client or player will stand after clicking this object
     {
         if (place.type == PlaceType.Bed)
         {
