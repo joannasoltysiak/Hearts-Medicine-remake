@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(targetPosition, transform.position) < 1.5f)
+        if((Mathf.Abs(targetPosition.x - transform.position.x) < 0.5f && Mathf.Abs(targetPosition.y - transform.position.y) < 0.5f))
         {
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;

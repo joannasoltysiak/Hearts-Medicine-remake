@@ -49,14 +49,14 @@ public class GameState : MonoBehaviour
                 Client client1 = clickedObject.GetComponent<Client>();
                 if (client1.state == ClientState.WaitingForAction)
                 {
-                    player.SetTargetPosition(transform,client1,ItemType.None);
+                    player.SetTargetPosition(SetPositionNextToPlace(client1.targetPlace, PositionType.ForPlayer, clickedPlace), client1,ItemType.None);
                 }
                 break;
 
             case "Item":
                 clickedPlace = hit.transform;
                 Item itemPlace = hit.collider.gameObject.GetComponent<Item>();
-                player.SetTargetPosition(clickedPlace, null, itemPlace.item);
+                player.SetTargetPosition(itemPlace.GetPosition(PositionType.Same), null, itemPlace.item);
                 clickedPlace = null;
                 break;
 
@@ -65,7 +65,11 @@ public class GameState : MonoBehaviour
                 ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
                 if (clickedObject == null)
                 {
-                    player.SetTargetPosition(clickedPlace,null, ItemType.None);
+                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
+                }
+                else if (place.IsTaken())
+                {
+                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), place.GetClient(), ItemType.None);
                 }
                 else if (place != null)
                 {
@@ -79,7 +83,7 @@ public class GameState : MonoBehaviour
                         }
                         else if(client.state == ClientState.WaitingForAction)
                         {
-                            player.SetTargetPosition(transform ,client,ItemType.None);
+                            player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                         }
                     }
                 }

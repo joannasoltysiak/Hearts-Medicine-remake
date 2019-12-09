@@ -47,6 +47,11 @@ public class ActionPlace : MonoBehaviour
         this.client = client;
     }
 
+    public Client GetClient()
+    {
+        return client;
+    }
+
     public bool IsTaken()
     {
         if (client == null)
@@ -68,10 +73,10 @@ public class ActionPlace : MonoBehaviour
                 placeForStanding.transform.position =  new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y / 2);
                 break;
             case PositionType.ForPlayer:
-                placeForStanding.transform.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - transform.localScale.y / 2);
+                placeForStanding.transform.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - 0.1f - transform.localScale.y / 2);
                 break;
             case PositionType.Same:
-                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - transform.localScale.y/2);
+                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y/2);
                 break;
             default:
                 placeForStanding.transform.position = new Vector2(transform.position.x,transform.position.y);
