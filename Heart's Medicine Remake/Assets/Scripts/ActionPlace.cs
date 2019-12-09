@@ -7,12 +7,15 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
+    GameObject placeForStanding;
 
     //public GameState gameState;
 
     // Start is called before the first frame update
     void Start()
     {
+        placeForStanding = new GameObject();
+        placeForStanding.transform.position = transform.position;
         client = null;
 
         switch (type)
@@ -44,6 +47,11 @@ public class ActionPlace : MonoBehaviour
         this.client = client;
     }
 
+    public Client GetClient()
+    {
+        return client;
+    }
+
     public bool IsTaken()
     {
         if (client == null)
@@ -54,7 +62,27 @@ public class ActionPlace : MonoBehaviour
 
     public void MakeEmpty()
     {
-        client = null; //how to do it??
+        client = null;
+    }
+
+    public Transform GetPosition(PositionType type)
+    {
+        switch (type)
+        {
+            case PositionType.ForClient:
+                placeForStanding.transform.position =  new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y / 2);
+                break;
+            case PositionType.ForPlayer:
+                placeForStanding.transform.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - 0.1f - transform.localScale.y / 2);
+                break;
+            case PositionType.Same:
+                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y/2);
+                break;
+            default:
+                placeForStanding.transform.position = new Vector2(transform.position.x,transform.position.y);
+                break;
+        }
+        return placeForStanding.transform;
     }
 }
 
@@ -71,4 +99,11 @@ public enum Actions
     None,
     DoCheckup,
     CheckTemperature
+}
+
+public enum PositionType
+{
+    ForClient, //specific position for client to go (eg. chair)
+    ForPlayer, // specific position for player (eg. chair)
+    Same //both go to the same place (eg. bed)
 }
