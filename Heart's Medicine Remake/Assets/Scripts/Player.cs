@@ -47,11 +47,19 @@ public class Player : MonoBehaviour
                 if (isHelped)
                 {
                     clientToHelp.activeAction = Actions.None;
-                    clientToHelp.state = ClientState.WaitingToBePlaced;
-                    if (Random.Range(0, 2) == 0)
-                        clientToHelp.wantedPlace = PlaceType.Bed;
+                    if (clientToHelp.NeedsMoreAction())
+                    {
+                        clientToHelp.state = ClientState.WaitingToBePlaced;
+                        if (Random.Range(0, 2) == 0)
+                            clientToHelp.wantedPlace = PlaceType.Bed;
+                        else
+                            clientToHelp.wantedPlace = PlaceType.Chair;
+                    }
                     else
-                        clientToHelp.wantedPlace = PlaceType.Chair;
+                    {
+                        clientToHelp.state = ClientState.WaitingForAction;
+                        clientToHelp.wantedPlace = PlaceType.Reception;
+                    }
                     clientToHelp.ChangeBubble();
                 }
                 clientToHelp = null;
@@ -69,11 +77,13 @@ public class Player : MonoBehaviour
                     if(itemList[i] == ItemType.Termometer)
                     {
                         itemList.Remove(itemList[i]);
+                        clientToHelp.ActionDone();
                         return true;
                     }
                 }
                 return false;
             case Actions.DoCheckup:
+                clientToHelp.ActionDone();
                 return true;
             default:
                 return false;

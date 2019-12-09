@@ -14,6 +14,7 @@ public class Client : MonoBehaviour
 
     public Actions activeAction;
     int numberOfActions;
+    public bool canBeChoosed;
 
     public PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
@@ -35,6 +36,7 @@ public class Client : MonoBehaviour
         ChangeBubble();
 
         numberOfActions = Random.Range(1, 3);
+        canBeChoosed = true;
     }
 
     // Update is called once per frame
@@ -49,11 +51,41 @@ public class Client : MonoBehaviour
             transform.parent = targetPlace.transform;
         }
 
-        if(state == ClientState.WaitingToPay)
+        if (state == ClientState.WaitingForAction && wantedPlace == PlaceType.Reception)
         {
+            //first he needs to walk towards next place in line before getting added to list of clients standing in front of Reception/Checkout
 
+            state = ClientState.WaitingToPay;
+            Debug.Log("You should bring me to checkout now");
+
+            ChangeBubble();
+
+            //so this should be after walking (and client should be added only once)
+            //Reception.AddNewClient(this);
         }
 
+        if(state == ClientState.WaitingToPay)
+        {
+            
+        }
+
+    }
+
+    public void ActionDone() 
+    {
+        numberOfActions--;
+    }
+
+    public bool NeedsMoreAction()   //checikng if client needs more actions
+    {
+        if (numberOfActions == 0)    //if he doesn't need any more actions
+        {
+            canBeChoosed = false;               //player can't choose him anymore
+            activeAction = Actions.None;        //so that no more action would be generated
+
+            return false;
+        }
+        return true;
     }
 
     public void SetTargetPosition(Transform position, ActionPlace targetPlace)
@@ -77,6 +109,9 @@ public class Client : MonoBehaviour
             case PlaceType.Chair:
                 bubble.color = new Color(0, 0, 255, 255);
                 break;
+            case PlaceType.Reception:
+                bubble.color = new Color(0, 255, 255, 255);
+                break;
         }
 
         switch (activeAction) // colour is placeholder for graphics
@@ -91,7 +126,6 @@ public class Client : MonoBehaviour
 
         if (state == ClientState.Walking)
             bubble.color = new Color(0, 0, 0, 0);
-
     }
     
 

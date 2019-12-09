@@ -29,7 +29,7 @@ public class ActionPlace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(client != null && client.activeAction == Actions.None && client.state == ClientState.WaitingForAction)
+        if(client != null && client.activeAction == Actions.None && client.state == ClientState.WaitingForAction && client.canBeChoosed)
         {
             int random = Random.Range(0, possibleActions.Length);
             client.activeAction = possibleActions[random];

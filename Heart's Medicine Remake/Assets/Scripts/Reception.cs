@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Reception : MonoBehaviour
 {
-    List<Client> clients;   //this will retain data about customers standing in line
+    static List<Client> clients;   //this will retain data about customers standing in line
+    static Vector3 nextPosition;
+    public Vector3 basePosition;
 
-    void Start()
+    public void Start()
     {
         clients = new List<Client>();
     }
 
-    public void AddNewClient(Client client)
+    public static void AddNewClient(Client client)  //addding new client to list clients
     {
-        clients.Add(client);
+        if (client != null)
+            clients.Add(client);
+    }
+
+    public static Vector3 GetNextPosition()
+    {
+        Vector3 pos = nextPosition;
+        nextPosition.x -= 1;
+
+        return pos;
     }
 
     public void GetPoints()
