@@ -7,14 +7,15 @@ public class ActionPlace : MonoBehaviour
     public PlaceType type;
     Client client;
     Actions[] possibleActions;
-    Transform placeForStanding;
+    GameObject placeForStanding;
 
     //public GameState gameState;
 
     // Start is called before the first frame update
     void Start()
     {
-        placeForStanding = transform;
+        placeForStanding = new GameObject();
+        placeForStanding.transform.position = transform.position;
         client = null;
 
         switch (type)
@@ -64,19 +65,19 @@ public class ActionPlace : MonoBehaviour
         switch (type)
         {
             case PositionType.ForClient:
-                placeForStanding.position =  new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2);
+                placeForStanding.transform.position =  new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y / 2);
                 break;
             case PositionType.ForPlayer:
-                placeForStanding.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - transform.localScale.y / 2);
+                placeForStanding.transform.position = new Vector2(transform.position.x + transform.localScale.x/2 , transform.position.y - transform.localScale.y / 2);
                 break;
             case PositionType.Same:
-                placeForStanding.position = new Vector2(transform.position.x, transform.position.y - transform.localScale.y/2);
+                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - transform.localScale.y/2);
                 break;
             default:
-                placeForStanding.position = new Vector2(transform.position.x,transform.position.y);
+                placeForStanding.transform.position = new Vector2(transform.position.x,transform.position.y);
                 break;
         }
-        return placeForStanding;
+        return placeForStanding.transform;
     }
 }
 
