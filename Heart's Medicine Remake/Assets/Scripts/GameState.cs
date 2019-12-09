@@ -51,6 +51,10 @@ public class GameState : MonoBehaviour
                 {
                     player.SetTargetPosition(transform,client1,ItemType.None);
                 }
+                if (!client1.canBeChoosed)
+                {
+                    clickedObject = null;
+                }
                 //make client active
                 break;
 
