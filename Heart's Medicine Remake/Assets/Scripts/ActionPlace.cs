@@ -54,7 +54,12 @@ public class ActionPlace : MonoBehaviour
 
     public void MakeEmpty()
     {
-        client = null; //how to do it??
+        client = null;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return Vector2.zero;
     }
 }
 
@@ -71,4 +76,11 @@ public enum Actions
     None,
     DoCheckup,
     CheckTemperature
+}
+
+public enum PositionType
+{
+    ForClient, //specific position for client to go (eg. chair)
+    ForPlayer, // specific position for player (eg. chair)
+    Same //both go to the same place (eg. bed)
 }

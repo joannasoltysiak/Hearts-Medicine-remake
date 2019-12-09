@@ -9,7 +9,7 @@ public class Client : MonoBehaviour
 
     Vector2 currentPosition;
     Vector3 targetPosition;
-    ActionPlace targetPlace;
+    public ActionPlace targetPlace;
     public SpriteRenderer bubble;
 
     public Actions activeAction;
@@ -46,7 +46,7 @@ public class Client : MonoBehaviour
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
 
-            transform.parent = targetPlace.transform;
+            //transform.parent = targetPlace.transform;
         }
 
         if(state == ClientState.WaitingToPay)
