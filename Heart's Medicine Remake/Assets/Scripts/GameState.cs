@@ -49,51 +49,52 @@ public class GameState : MonoBehaviour
                 Client client1 = clickedObject.GetComponent<Client>();
                 if (client1.state == ClientState.WaitingForAction)
                 {
-                    player.SetTargetPosition(transform,client1,ItemType.None);
+                    player.SetTargetPosition(SetPositionNextToPlace(client1.targetPlace, PositionType.ForPlayer, clickedPlace), client1,ItemType.None);
                 }
+
                 if (!client1.canBeChoosed)
                 {
                     clickedObject = null;
                 }
                 //make client active
+
                 break;
 
             case "Item":
                 clickedPlace = hit.transform;
                 Item itemPlace = hit.collider.gameObject.GetComponent<Item>();
-                player.SetTargetPosition(clickedPlace, null, itemPlace.item);
+                player.SetTargetPosition(itemPlace.GetPosition(PositionType.Same), null, itemPlace.item);
                 clickedPlace = null;
-                //set players target and when position is okay, take item
                 break;
 
             case "ActionPlace":
                 clickedPlace = hit.transform;
-                //set active client target to this, then move client, if no client active, then player go, check if place is taken
+                ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
                 if (clickedObject == null)
                 {
-                    player.SetTargetPosition(clickedPlace,null, ItemType.None);
+                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                 }
-                else
+                else if (place.IsTaken())
                 {
-                    ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
-
-                    if (place != null)
+                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), place.GetClient(), ItemType.None);
+                }
+                else if (place != null)
+                {
+                    if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                     {
-                        if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
+                        Client client = clickedObject.GetComponent<Client>();
+                        if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
                         {
-                            Client client = clickedObject.GetComponent<Client>();
-                            if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())
-                            {
-                                client.SetTargetPosition(clickedPlace, place);
-                                place.SetClient(client);
-                            }
-                            else if(client.state == ClientState.WaitingForAction)
-                            {
-                                player.SetTargetPosition(transform,client,ItemType.None);
-                            }
+                            client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
+                            place.SetClient(client);
+                        }
+                        else if(client.state == ClientState.WaitingForAction)
+                        {
+                            player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                         }
                     }
                 }
+                
                 clickedObject = null;
                 clickedPlace = null;
 
@@ -110,5 +111,21 @@ public class GameState : MonoBehaviour
                 break;
           
         }
+    }
+
+    Transform SetPositionNextToPlace(ActionPlace place, PositionType position, Transform clickedPlace)
+    {
+        if (place.type == PlaceType.Bed)
+        {
+            clickedPlace = place.GetPosition(PositionType.Same);
+            return clickedPlace;
+        }
+        else if (place.type == PlaceType.Chair)
+        {
+            clickedPlace = place.GetPosition(position);
+            return clickedPlace;
+        }
+        else
+            return null;
     }
 }

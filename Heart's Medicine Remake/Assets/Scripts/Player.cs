@@ -26,27 +26,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(targetPosition, transform.position) < 1.5f)
+        if((Mathf.Abs(targetPosition.x - transform.position.x) < 0.5f && Mathf.Abs(targetPosition.y - transform.position.y) < 0.5f))
         {
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
 
-            if(destinationItem != ItemType.None)
+            if(destinationItem != ItemType.None) //player gets an item
             {
                 if (itemList.Count < 3)
                 {
-                    Debug.Log("ITEM ADDED");
                     itemList.Add(destinationItem);
                     destinationItem = ItemType.None;
                 }
             }
 
-            if(clientToHelp != null)
+            if(clientToHelp != null) //player goes to the client 
             {
                 bool isHelped = CheckHelp();
                 if (isHelped)
                 {
                     clientToHelp.activeAction = Actions.None;
+<<<<<<< HEAD
                     if (clientToHelp.NeedsMoreAction())
                     {
                         clientToHelp.state = ClientState.WaitingToBePlaced;
@@ -55,6 +55,12 @@ public class Player : MonoBehaviour
                         else
                             clientToHelp.wantedPlace = PlaceType.Chair;
                     }
+=======
+                    clientToHelp.targetPlace.MakeEmpty();
+                    clientToHelp.state = ClientState.WaitingToBePlaced;
+                    if (Random.Range(0, 2) == 0)
+                        clientToHelp.wantedPlace = PlaceType.Bed;
+>>>>>>> kinga-branch
                     else
                     {
                         clientToHelp.state = ClientState.WaitingForAction;
@@ -67,7 +73,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    bool CheckHelp()
+    bool CheckHelp() //check if you have proper items to help client
     {
         switch (clientToHelp.activeAction)
         {
