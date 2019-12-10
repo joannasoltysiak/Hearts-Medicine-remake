@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class WaitingRoom: MonoBehaviour
 {
-    static Vector2 place1 = new Vector2(-4, -3);
-    static Vector2 place2 = new Vector2(-6, -3);
-    static Vector2 place3 = new Vector2(-8, -3);
-
-    static Vector2[] places = { place1, place2, place3 };
+    static Vector2[] places = { new Vector2(-4, -3), new Vector2(-6, -3), new Vector2(-8, -3) };
 
     public Client client;
     
