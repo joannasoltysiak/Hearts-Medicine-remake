@@ -8,42 +8,50 @@ public class WaitingRoom: MonoBehaviour
     static Vector2 place2 = new Vector2(-6, -3);
     static Vector2 place3 = new Vector2(-8, -3);
 
+    static Vector2[] places = { place1, place2, place3 };
+
     public Client client;
+    
+    static int numberOfClients = 0;
 
-    static List<int> clients = new List<int>();
+    static bool[] emptyPlaces = {true, true, true};
 
-    public void SpawnClient()
+    public void SpawnClient() // spawning clients on the proper position 
     {
-        switch (clients.Count) // spawning clients on the proper position (depending where are they in the line) 
-            //THERE MIGHT BE A PROBLEM IF YOU PICK OP CLIENT FROM INSIDE or something
+        if (numberOfClients < 3)
         {
-            case 0:
-                client.transform.position = place1;
-                client.isInWaitingRoom = 0;
-                Instantiate(client, client.transform); //Cannot instantiate objects with a parent which is persistent. New object will be created without a parent. SOME BUG???
-                clients.Add(0);
-                break;
-            case 1:
-                client.transform.position = place2;
-                client.isInWaitingRoom = 1;
-                Instantiate(client, client.transform);
-                clients.Add(1);
-                break;
-            case 2:
-                client.transform.position = place3;
-                client.isInWaitingRoom = 2;
-                Instantiate(client, client.transform);
-                clients.Add(2);
-                break;
-            default:
-                Debug.Log("You lost a client LOL");
-                break;
+            NewClient();
         }
+        else
+        {
+            Debug.Log("You lost a client LOL");
+        } 
     }
 
     public static void DeleteClient(int client)
     {
-        clients.Remove(client);
+        emptyPlaces[client] = true;
+        numberOfClients--;
+    }
+
+    public void NewClient()
+    {
+        Client newClient = Instantiate(client, new Vector3(0, 0, 0), Quaternion.identity);
+        int firstEmpty = 0;
+
+        for (int i = 2; i >= 0; i--)
+        {
+            if (emptyPlaces[i])
+            {
+                firstEmpty = i;
+            }
+        }
+        emptyPlaces[firstEmpty] = false;
+
+        newClient.transform.position = places[firstEmpty];
+        newClient.isInWaitingRoom = firstEmpty;
+        numberOfClients++;
+
     }
 
 }
