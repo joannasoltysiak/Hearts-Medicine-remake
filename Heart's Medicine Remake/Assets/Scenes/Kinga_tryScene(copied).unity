@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367f9732f18311e4a9fbd9b162d10a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  client: {fileID: 0}
+  client: {fileID: 5336623402149395760, guid: 9ed883d71f3ef8849a52acb437ebeed2, type: 3}
 --- !u!114 &664207409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,7 +1061,7 @@ PrefabInstance:
     - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
       propertyPath: m_Name
-      value: PlacePlaceholder
+      value: WaitingRoomPlacePlaceholder
       objectReference: {fileID: 0}
     - target: {fileID: 2053014299566660606, guid: ee17e256eb4e650428948489c18dd167,
         type: 3}
@@ -1435,6 +1435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTime: 60
+  waitingRoom: {fileID: 664207408}
 --- !u!114 &1731434179
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,8 @@ public class WaitingRoom: MonoBehaviour
 
     public void SpawnClient()
     {
-        switch (clients.Count)
+        switch (clients.Count) // spawning clients on the proper position (depending where are they in the line) 
+            //THERE MIGHT BE A PROBLEM IF YOU PICK OP CLIENT FROM INSIDE or something
         {
             case 0:
                 client.transform.position = place1;
@@ -42,8 +43,7 @@ public class WaitingRoom: MonoBehaviour
 
     public static void DeleteClient(int client)
     {
-        Debug.Log(clients.Remove(client));
-        Debug.Log("DELETED " + clients.Count);
+        clients.Remove(client);
     }
 
 }

@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     Image timerBar;
     public float maxTime = 5f;
     float timeLeft;
-    float nextClient;
+    float nextClient; // time until next client appear
     public WaitingRoom waitingRoom;
 
     // Start is called before the first frame update
