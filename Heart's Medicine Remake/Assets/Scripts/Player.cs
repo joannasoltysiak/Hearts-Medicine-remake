@@ -45,18 +45,19 @@ public class Player : MonoBehaviour
                 bool isHelped = CheckHelp();
                 if (isHelped)
                 {
+                    clientToHelp.AddHappiness(0.5f);
+                    clientToHelp.ResetWaitingTime();
+
                     clientToHelp.activeAction = Actions.None;
                     clientToHelp.targetPlace.MakeEmpty();
                     if (clientToHelp.NeedsMoreAction())
                     {
-
                         clientToHelp.state = ClientState.WaitingToBePlaced;
                         if (Random.Range(0, 2) == 0)
                             clientToHelp.wantedPlace = PlaceType.Bed;
                         else
                             clientToHelp.wantedPlace = PlaceType.Chair;
                     }
-
                     else
                     {
                         clientToHelp.state = ClientState.WaitingForAction;

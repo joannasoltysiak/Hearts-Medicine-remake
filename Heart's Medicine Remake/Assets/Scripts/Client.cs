@@ -21,6 +21,8 @@ public class Client : MonoBehaviour
 
     public HappinessBar happinessBar;
 
+    float waitingTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,18 +40,26 @@ public class Client : MonoBehaviour
         ChangeBubble();
 
         numberOfActions = Random.Range(1, 3);
-        happinessBar.MinusValue(numberOfActions * 0.1);
+        happinessBar.MinusValue(numberOfActions * 0.1f);
         canBeChoosed = true;
+
+        waitingTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(waitingTime > 3) //waits for 3 seconds without substracting happiness
+        {
+            happinessBar.MinusValue(0.05f);
+        }
         
         if ((Mathf.Abs(targetPosition.x - transform.position.x) < 0.2f  && Mathf.Abs(targetPosition.y - transform.position.y) < 0.2f ) 
             && state == ClientState.Walking)
         {
-            Debug.Log(Vector3.Distance(targetPosition, transform.position));
+            waitingTime = 0;
+            AddHappiness(0.1f);
+
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
@@ -68,6 +78,10 @@ public class Client : MonoBehaviour
 
             //so this should be after walking (and client should be added only once)
             //Reception.AddNewClient(this);
+        }
+        else
+        {
+            waitingTime += Time.deltaTime;
         }
 
         if(state == ClientState.WaitingToPay)
@@ -134,7 +148,18 @@ public class Client : MonoBehaviour
             bubble.color = new Color(0, 0, 0, 0);
     }
     
+    public void AddHappiness(float value)
+    {
+        if (happinessBar.GetValue() + value < 1)
+            happinessBar.AddValue(value);
+        else
+            happinessBar.SetValue(1);
+    }
 
+    public void ResetWaitingTime()
+    {
+        waitingTime = 0;
+    }
 }
 
 public enum ClientState

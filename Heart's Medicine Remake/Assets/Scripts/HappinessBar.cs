@@ -21,4 +21,14 @@ public class HappinessBar : MonoBehaviour
     {
         value -= change;
     }
+
+    public float GetValue()
+    {
+        return value;
+    }
+
+    public void SetValue(float change)
+    {
+        value = change;
+    }
 }
