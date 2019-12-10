@@ -977,7 +977,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 3
+  maxSpeed: 5
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -1274,6 +1274,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorToTurnTo: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+--- !u!114 &1422581573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422581568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182ae14f1ce6fe64eb30af753247f271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1701275801
 PrefabInstance:
   m_ObjectHideFlags: 0

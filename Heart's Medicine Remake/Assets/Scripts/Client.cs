@@ -73,19 +73,10 @@ public class Client : MonoBehaviour
             //first he needs to walk towards next place in line before getting added to list of clients standing in front of Reception/Checkout
 
             state = ClientState.WaitingToPay;
-            Debug.Log("You should bring me to checkout now");
-
             ChangeBubble();
-
-            //so this should be after walking (and client should be added only once)
-            //Reception.AddNewClient(this);
         }
 
-        if(state == ClientState.WaitingToPay)
-        {
-
-        }
-        else
+        if(state != ClientState.WaitingToPay)
         {
             waitingTime += Time.deltaTime;
         }
@@ -104,6 +95,8 @@ public class Client : MonoBehaviour
             canBeChoosed = false;               //player can't choose him anymore
             activeAction = Actions.None;        //so that no more action would be generated
 
+            SetTargetPosition(Reception.GetNextPosition(), Reception.actionPlace);
+
             return false;
         }
         return true;
@@ -119,6 +112,16 @@ public class Client : MonoBehaviour
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
+
+
+        state = ClientState.Walking;
+        ChangeBubble();
+    }
+
+    public void SetTargetPositionByVector2(Vector2 newPos)
+    {
+        targetPosition = Vector3.zero;
+        //pathfindingTarget.target = Vector3.zero;
 
 
         state = ClientState.Walking;
