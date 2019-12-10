@@ -60,7 +60,7 @@ public class Client : MonoBehaviour
         {
             waitingTime = 0;
             AddHappiness(0.3f);
-
+            
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
@@ -137,9 +137,6 @@ public class Client : MonoBehaviour
                 break;
             case PlaceType.Chair:
                 bubble.color = new Color(0, 0, 255, 255);
-                break;
-            case PlaceType.Reception:
-                bubble.color = new Color(0, 255, 255, 255);
                 break;
         }
 
