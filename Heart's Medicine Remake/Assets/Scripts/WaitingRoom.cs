@@ -8,9 +8,9 @@ public class WaitingRoom: MonoBehaviour
     static Vector2 place2 = new Vector2(-6, -3);
     static Vector2 place3 = new Vector2(-8, -3);
 
-    public GameObject client;
+    public Client client;
 
-    static List<GameObject> clients = new List<GameObject>();
+    static List<int> clients = new List<int>();
 
     public void SpawnClient()
     {
@@ -18,18 +18,21 @@ public class WaitingRoom: MonoBehaviour
         {
             case 0:
                 client.transform.position = place1;
-                Object.Instantiate(client, client.transform);
-                clients.Add(client);
+                client.isInWaitingRoom = 0;
+                Instantiate(client, client.transform); //Cannot instantiate objects with a parent which is persistent. New object will be created without a parent. SOME BUG???
+                clients.Add(0);
                 break;
             case 1:
                 client.transform.position = place2;
+                client.isInWaitingRoom = 1;
                 Instantiate(client, client.transform);
-                clients.Add(client);
+                clients.Add(1);
                 break;
             case 2:
                 client.transform.position = place3;
-                Object.Instantiate(client, client.transform);
-                clients.Add(client);
+                client.isInWaitingRoom = 2;
+                Instantiate(client, client.transform);
+                clients.Add(2);
                 break;
             default:
                 Debug.Log("You lost a client LOL");
@@ -37,9 +40,10 @@ public class WaitingRoom: MonoBehaviour
         }
     }
 
-    public static void DeleteClient(GameObject client)
+    public static void DeleteClient(int client)
     {
-        clients.Remove(client);
+        Debug.Log(clients.Remove(client));
+        Debug.Log("DELETED " + clients.Count);
     }
 
 }

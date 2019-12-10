@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     public Actions activeAction;
     int numberOfActions;
     public bool canBeChoosed;
-    bool isInWaitingRoom;
+    public int isInWaitingRoom;
 
     public PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
@@ -45,7 +45,6 @@ public class Client : MonoBehaviour
         canBeChoosed = true;
 
         waitingTime = 0;
-        isInWaitingRoom = true;
     }
 
     // Update is called once per frame
@@ -112,10 +111,10 @@ public class Client : MonoBehaviour
 
     public void SetTargetPosition(Transform position, ActionPlace targetPlace)
     {
-        if (isInWaitingRoom)
+        if (isInWaitingRoom >= 0)
         {
-            WaitingRoom.DeleteClient(this.gameObject);
-            isInWaitingRoom = false;
+            WaitingRoom.DeleteClient(isInWaitingRoom);
+            isInWaitingRoom = -1;
         }
         this.targetPlace = targetPlace;
         targetPosition = position.position;
