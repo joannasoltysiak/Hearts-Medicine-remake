@@ -30,23 +30,23 @@ public class WaitingRoom: MonoBehaviour
 
     public static void DeleteClient(int client)
     {
-        emptyPlaces[client] = true;
+        emptyPlaces[client] = true;         //after client leaves the place - it's empty again
         numberOfClients--;
     }
 
     public void NewClient()
     {
-        Client newClient = Instantiate(client, new Vector3(0, 0, 0), Quaternion.identity);
-        int firstEmpty = 0;
+        Client newClient = Instantiate(client, new Vector3(0, 0, 0), Quaternion.identity);          //creating new client
+        int firstEmpty = 0;                 //position of first empty place for client to appear
 
         for (int i = 2; i >= 0; i--)
         {
-            if (emptyPlaces[i])
+            if (emptyPlaces[i])             //if place is empty
             {
-                firstEmpty = i;
+                firstEmpty = i;             //take this place
             }
         }
-        emptyPlaces[firstEmpty] = false;
+        emptyPlaces[firstEmpty] = false;    //client takes this place 
 
         newClient.transform.position = places[firstEmpty];
         newClient.isInWaitingRoom = firstEmpty;
