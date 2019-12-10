@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Reception : MonoBehaviour
 {
-    static List<Client> clients;   //this will retain data about customers standing in line
+    public static List<Client> clients;   //this will retain data about customers standing in line
     static Vector3 nextPosition;
     public Vector3 basePosition;
 

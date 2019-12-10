@@ -19,6 +19,8 @@ public class Client : MonoBehaviour
     public PlaceType wantedPlace;
     AIDestinationSetter pathfindingTarget;
 
+    public HappinessBar happinessBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class Client : MonoBehaviour
         ChangeBubble();
 
         numberOfActions = Random.Range(1, 3);
+        happinessBar.MinusValue(numberOfActions * 0.1);
         canBeChoosed = true;
     }
 
