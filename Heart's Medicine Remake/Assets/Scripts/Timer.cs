@@ -9,13 +9,14 @@ public class Timer : MonoBehaviour
     public float maxTime = 5f;
     float timeLeft;
     float nextClient;
+    public WaitingRoom waitingRoom;
 
     // Start is called before the first frame update
     void Start()
     {
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
-        nextClient = 1f;
+        nextClient = 0f;
     }
 
     // Update is called once per frame
@@ -25,12 +26,12 @@ public class Timer : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             timerBar.fillAmount = timeLeft / maxTime;
-            nextClient += Time.deltaTime;
+            nextClient -= Time.deltaTime;
 
-            if(nextClient > 1f)
+            if(nextClient < 0f)
             {
-                WaitingRoom.SpawnClient();
-                nextClient = 0;
+                waitingRoom.SpawnClient();
+                nextClient = 7f;
             }
         }
         else

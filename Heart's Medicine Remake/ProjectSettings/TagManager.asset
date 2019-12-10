@@ -8,6 +8,7 @@ TagManager:
   - ActionPlace
   - Floor
   - Item
+  - WaitingRoom
   layers:
   - Default
   - TransparentFX

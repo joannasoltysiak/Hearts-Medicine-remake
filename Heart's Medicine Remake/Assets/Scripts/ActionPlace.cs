@@ -91,7 +91,8 @@ public enum PlaceType
     Bed,            //place for Client to lay down -> bed actions
     WaitingSeats,   //place where Client wait to be picked
     Reception,      //where Client wait to pay
-    Chair           //place for Client to sit -> chair actions
+    Chair,           //place for Client to sit -> chair actions
+    WaitingRoom
 }
 
 public enum Actions

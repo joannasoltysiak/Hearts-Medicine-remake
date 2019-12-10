@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaitingRoom
+public class WaitingRoom: MonoBehaviour
 {
     static Vector2 place1 = new Vector2(-4, -3);
     static Vector2 place2 = new Vector2(-6, -3);
     static Vector2 place3 = new Vector2(-8, -3);
 
-    public static GameObject client;
+    public GameObject client;
 
-    static List<GameObject> clients;
+    static List<GameObject> clients = new List<GameObject>();
 
-    public static void SpawnClient()
+    public void SpawnClient()
     {
         switch (clients.Count)
         {
@@ -23,7 +23,7 @@ public class WaitingRoom
                 break;
             case 1:
                 client.transform.position = place2;
-                Object.Instantiate(client, client.transform);
+                Instantiate(client, client.transform);
                 clients.Add(client);
                 break;
             case 2:
@@ -37,7 +37,7 @@ public class WaitingRoom
         }
     }
 
-    public void DeleteClient(GameObject client)
+    public static void DeleteClient(GameObject client)
     {
         clients.Remove(client);
     }
