@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     Client clientToHelp;
     ItemType destinationItem;
 
+    public bool isGoingToReception;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
         itemList = new List<ItemType>();
         currentPosition = transform.position;
         pathfindingTarget = GetComponent<AIDestinationSetter>();
+        isGoingToReception = false;
     }
 
     // Update is called once per frame
@@ -66,6 +69,12 @@ public class Player : MonoBehaviour
                     clientToHelp.ChangeBubble();
                 }
                 clientToHelp = null;
+            }
+
+            if (isGoingToReception)   //when player came to Reception to get the money $$$
+            {
+                Reception.GetPoints();
+                isGoingToReception = false;
             }
         }
     }

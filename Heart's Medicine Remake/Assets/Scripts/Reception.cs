@@ -8,6 +8,7 @@ public class Reception : MonoBehaviour
     static Vector2 nextPosition;
     static Vector2 basePosition;
     public static Transform positionTransform;
+    public static Transform playerPosition;
     public static ActionPlace actionPlace;
 
     public static List<Transform> checkoutPositions;
@@ -22,6 +23,8 @@ public class Reception : MonoBehaviour
         checkoutPositions = new List<Transform>();
 
         positionTransform = GetNewTransform();
+        playerPosition = GetNewTransform();
+        playerPosition.transform.position = new Vector2(5, -2);
     }
 
     public static void AddNewClient(Client client)  //addding new client to list clients
@@ -46,15 +49,20 @@ public class Reception : MonoBehaviour
         return nextInLine;
     }
 
-    public void GetPoints()
+    public static void GetPoints()
     {
-        foreach (Client c in clients)
-        {
-            GameState.points += (int)(c.happinessBar.GetValue()*10);
-        }
 
-        clients.Clear();
-        nextPosition = basePosition;
+        if (clients.Count > 0)
+        {
+            foreach (Client c in clients)
+            {
+                GameState.points += (int)(c.happinessBar.GetValue() * 10);      //we got as many points as client's happiness value * 10
+                Destroy(c.gameObject);          //for now - it destroys the client object
+            }
+
+            clients.Clear();
+            nextPosition = basePosition;
+        }
     }
 
     public static Transform GetNewTransform()

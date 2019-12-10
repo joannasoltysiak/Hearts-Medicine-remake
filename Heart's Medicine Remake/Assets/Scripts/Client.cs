@@ -70,7 +70,9 @@ public class Client : MonoBehaviour
 
         if (state == ClientState.WaitingForAction && wantedPlace == PlaceType.Reception)
         {
-            //first he needs to walk towards next place in line before getting added to list of clients standing in front of Reception/Checkout
+            //first he walks towards next place in line before getting added to list of clients standing in front of Reception/Checkout
+
+            Reception.AddNewClient(this);
 
             state = ClientState.WaitingToPay;
             ChangeBubble();

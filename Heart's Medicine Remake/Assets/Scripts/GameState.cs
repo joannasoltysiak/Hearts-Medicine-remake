@@ -71,9 +71,14 @@ public class GameState : MonoBehaviour
             case "ActionPlace":
                 clickedPlace = hit.transform;
                 ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
-                if (clickedObject == null)//player can come to the place without any action
+                if (clickedObject == null && place.type != PlaceType.Reception)         //player can come to the place without any action
                 {
                     player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
+                }
+                else if (place.type == PlaceType.Reception)         //player comes to reception/checkout to take the payment
+                {
+                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
+                    player.isGoingToReception = true;
                 }
                 else if (place.IsTaken()) //player comes over to help the client
                 {
@@ -89,13 +94,12 @@ public class GameState : MonoBehaviour
                             client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
                             place.SetClient(client);
                         }
-                        else if(client.state == ClientState.WaitingForAction)//cant move client who is waiting for action
+                        else if (client.state == ClientState.WaitingForAction)//cant move client who is waiting for action
                         {
                             player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                         }
                     }
                 }
-                
                 clickedObject = null;
                 clickedPlace = null;
 
@@ -124,6 +128,11 @@ public class GameState : MonoBehaviour
         else if (place.type == PlaceType.Chair)
         {
             clickedPlace = place.GetPosition(position);
+            return clickedPlace;
+        }
+        else if(place.type == PlaceType.Reception)
+        {
+            clickedPlace = Reception.playerPosition;
             return clickedPlace;
         }
         else
