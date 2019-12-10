@@ -49,16 +49,16 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(waitingTime > 3) //waits for 3 seconds without substracting happiness
+        if(waitingTime > 5) //waits for 5 seconds without substracting happiness
         {
-            happinessBar.MinusValue(0.05f);
+            happinessBar.MinusValue(0.0005f);
         }
         
         if ((Mathf.Abs(targetPosition.x - transform.position.x) < 0.2f  && Mathf.Abs(targetPosition.y - transform.position.y) < 0.2f ) 
             && state == ClientState.Walking)
         {
             waitingTime = 0;
-            AddHappiness(0.1f);
+            AddHappiness(0.3f);
 
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
@@ -79,14 +79,14 @@ public class Client : MonoBehaviour
             //so this should be after walking (and client should be added only once)
             //Reception.AddNewClient(this);
         }
-        else
-        {
-            waitingTime += Time.deltaTime;
-        }
 
         if(state == ClientState.WaitingToPay)
         {
-            
+
+        }
+        else
+        {
+            waitingTime += Time.deltaTime;
         }
 
     }
