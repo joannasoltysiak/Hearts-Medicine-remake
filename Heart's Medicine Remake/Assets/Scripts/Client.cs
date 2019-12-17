@@ -59,7 +59,7 @@ public class Client : MonoBehaviour
             && state == ClientState.Walking)
         {
             waitingTime = 0;
-            AddHappiness(0.3f);
+            AddHappiness(0.2f);
             
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;

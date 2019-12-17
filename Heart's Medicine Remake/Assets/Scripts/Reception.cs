@@ -56,7 +56,7 @@ public class Reception : MonoBehaviour
         {
             foreach (Client c in clients)
             {
-                GameState.points += (int)(c.happinessBar.GetValue() * 10);      //we got as many points as client's happiness value * 10
+                GameState.points += (int)(c.happinessBar.GetValue() * 100);      //we got as many points as client's happiness value * 10
                 Destroy(c.gameObject);          //for now - it destroys the client object
             }
 
