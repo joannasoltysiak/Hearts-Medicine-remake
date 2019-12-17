@@ -37,7 +37,6 @@ public class Timer : MonoBehaviour
             if(nextClient < 0f)
             {
                 waitingRoom.SpawnClient();
-                clientsOnMap++;
                 nextClient = 7f;
             }
         }
