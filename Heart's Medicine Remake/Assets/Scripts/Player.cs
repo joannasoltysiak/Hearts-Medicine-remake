@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     Client clientToHelp;
     ItemType destinationItem;
 
+    public Animator animator;
     public bool isGoingToReception;
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
 
+            animator.SetBool("walking", false);
             if(destinationItem != ItemType.None) //player gets an item
             {
                 if (itemList.Count < 3)
@@ -104,6 +106,8 @@ public class Player : MonoBehaviour
 
     public void SetTargetPosition(Transform position, Client clientToHelp, ItemType destinationItem)
     {
+        animator.SetBool("walking", true);
+
         targetPosition = position.position;
         pathfindingTarget.target = position;
         this.clientToHelp = clientToHelp;
