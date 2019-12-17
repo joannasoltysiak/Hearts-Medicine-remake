@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
         switch (type)
         {
             case PositionType.Same:
-                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f - transform.localScale.y / 2);
+                placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 3);
                 break;
             default:
                 placeForStanding.transform.position = new Vector2(transform.position.x, transform.position.y);
