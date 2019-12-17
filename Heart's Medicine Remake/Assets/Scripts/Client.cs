@@ -41,7 +41,7 @@ public class Client : MonoBehaviour
 
         ChangeBubble();
 
-        numberOfActions = Random.Range(1, 3);
+        numberOfActions = Random.Range(1, 2);
         happinessBar.MinusValue(numberOfActions * 0.1f);
         canBeChoosed = true;
 
@@ -51,17 +51,17 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(waitingTime > 5) //waits for 5 seconds without substracting happiness
+        if(waitingTime > 3) //waits for 5 seconds without substracting happiness
         {
-            happinessBar.MinusValue(0.0005f);
+            happinessBar.MinusValue(0.001f);
         }
         
         if ((Mathf.Abs(targetPosition.x - transform.position.x) < 0.2f  && Mathf.Abs(targetPosition.y - transform.position.y) < 0.2f ) 
             && state == ClientState.Walking)
         {
             waitingTime = 0;
-
-            AddHappiness(0.2f);
+            if(wantedPlace != PlaceType.Reception) //only after action 
+                AddHappiness(0.2f);
             animator.SetBool("walking", false);
 
             state = ClientState.WaitingForAction;
@@ -76,6 +76,7 @@ public class Client : MonoBehaviour
             //first he walks towards next place in line before getting added to list of clients standing in front of Reception/Checkout
 
             Reception.AddNewClient(this);
+            animator.SetBool("walking", false);
 
             state = ClientState.WaitingToPay;
             ChangeBubble();
@@ -99,7 +100,7 @@ public class Client : MonoBehaviour
         {
             canBeChoosed = false;               //player can't choose him anymore
             activeAction = Actions.None;        //so that no more action would be generated
-
+            targetPlace.MakeEmpty();
             SetTargetPosition(Reception.GetNextPosition(), Reception.actionPlace);
 
             return false;
@@ -119,16 +120,6 @@ public class Client : MonoBehaviour
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
-
-
-        state = ClientState.Walking;
-        ChangeBubble();
-    }
-
-    public void SetTargetPositionByVector2(Vector2 newPos)
-    {
-        targetPosition = Vector3.zero;
-        //pathfindingTarget.target = Vector3.zero;
 
 
         state = ClientState.Walking;

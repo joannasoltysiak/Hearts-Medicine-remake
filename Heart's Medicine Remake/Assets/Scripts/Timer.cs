@@ -46,7 +46,10 @@ public class Timer : MonoBehaviour
         {
             if(clientsOnMap == 0)
             {
-                endGame.text = "Level Over!";
+                if(GameState.TresholdReached())
+                    endGame.text = "This time everyone survived! yeeyy!!";
+                else
+                    endGame.text = "People died :(("; //😞
                 Time.timeScale = 0;
             }
         }

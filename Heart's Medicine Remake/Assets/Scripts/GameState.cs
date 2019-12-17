@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
     public Player player;
     public static int points;
     public Text pointsInfo;
+    public static int pointsTreshold;
 
     GameObject clickedObject;
     Transform clickedPlace;
@@ -19,6 +20,7 @@ public class GameState : MonoBehaviour
         clickedObject = null;
         clickedPlace = null;
         points = 0;
+        pointsTreshold = 700;
         pointsInfo.text = "Points: 0";
     }
 
@@ -30,7 +32,7 @@ public class GameState : MonoBehaviour
             DoRaycast();
         }
 
-        pointsInfo.text = "Points: " + points;
+        pointsInfo.text = "Points: " + points + " / " + pointsTreshold;
     }
 
     void DoRaycast()
@@ -38,7 +40,7 @@ public class GameState : MonoBehaviour
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mousePosition;
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
-        Debug.Log(hit.collider.tag);
+        //Debug.Log(hit.collider.tag);
 
         //By raycasting we get objects that we click on, then we classify the object by its tag and we keep it in the memory for actions. Each Object has its own action
 
@@ -91,6 +93,9 @@ public class GameState : MonoBehaviour
                         Client client = clickedObject.GetComponent<Client>();
                         if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())//moving client to the specific place
                         {
+                            if(client.targetPlace!=null)
+                                client.targetPlace.MakeEmpty();
+
                             client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
                             place.SetClient(client);
                         }
@@ -137,5 +142,12 @@ public class GameState : MonoBehaviour
         }
         else
             return null;
+    }
+
+    public static bool TresholdReached()
+    {
+        if (points >= pointsTreshold)
+            return true;
+        return false;
     }
 }

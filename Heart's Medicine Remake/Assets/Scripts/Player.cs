@@ -50,22 +50,39 @@ public class Player : MonoBehaviour
                 bool isHelped = CheckHelp();
                 if (isHelped)
                 {
-                    clientToHelp.AddHappiness(0.5f);
+                    clientToHelp.AddHappiness(0.2f);
                     clientToHelp.ResetWaitingTime();
 
                     clientToHelp.activeAction = Actions.None;
-                    clientToHelp.targetPlace.MakeEmpty();
+
                     if (clientToHelp.NeedsMoreAction())
                     {
+                        //clientToHelp.targetPlace.MakeEmpty();
                         clientToHelp.state = ClientState.WaitingToBePlaced;
-                        if (Random.Range(0, 2) == 0)
-                            clientToHelp.wantedPlace = PlaceType.Bed;
+                        if (clientToHelp.targetPlace = null)
+                        {
+                            if (Random.Range(0, 2) == 0)
+                                clientToHelp.wantedPlace = PlaceType.Bed;
+                            else
+                                clientToHelp.wantedPlace = PlaceType.Chair;
+                        }
                         else
-                            clientToHelp.wantedPlace = PlaceType.Chair;
+                        {
+                            switch (clientToHelp.wantedPlace)
+                            {
+                                case PlaceType.Bed:
+                                    clientToHelp.wantedPlace = PlaceType.Chair;
+                                    break;
+
+                                case PlaceType.Chair:
+                                    clientToHelp.wantedPlace = PlaceType.Bed;
+                                    break;
+                            }
+                        }
                     }
                     else
                     {
-                        clientToHelp.state = ClientState.WaitingForAction;
+                        clientToHelp.state = ClientState.Walking;
                         clientToHelp.wantedPlace = PlaceType.Reception;
                     }
                     clientToHelp.ChangeBubble();
