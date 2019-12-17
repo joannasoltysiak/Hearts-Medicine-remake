@@ -13,12 +13,14 @@ public class Timer : MonoBehaviour
     public WaitingRoom waitingRoom;
 
     public TextMeshProUGUI endGame;
+    public GameObject panel;
 
     public static int clientsOnMap;
 
     // Start is called before the first frame update
     void Start()
     {
+        panel.SetActive(false);
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
         nextClient = 0f;
@@ -49,5 +51,16 @@ public class Timer : MonoBehaviour
             }
         }
     }
-    
+
+    public void StopTimeAndShowInstruction()
+    {
+        Time.timeScale = 0;
+        panel.SetActive(true);
+    }
+
+    public void HideInstruction()
+    {
+        Time.timeScale = 1f;
+        panel.SetActive(false);
+    }
 }
