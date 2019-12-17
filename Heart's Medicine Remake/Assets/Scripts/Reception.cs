@@ -35,8 +35,7 @@ public class Reception : MonoBehaviour
     }
 
     public static Transform GetNextPosition()
-    {
-        Vector3 pos = nextPosition;
+    { 
         nextPosition.x -= 1;
         positionTransform.transform.position = nextPosition;
 
@@ -56,7 +55,10 @@ public class Reception : MonoBehaviour
         {
             foreach (Client c in clients)
             {
-                GameState.points += (int)(c.happinessBar.GetValue() * 100);      //we got as many points as client's happiness value * 10
+
+                GameState.points += (int)(c.happinessBar.GetValue() * 100);      //we got as many points as client's happiness value * 100
+                Timer.clientsOnMap--;
+
                 Destroy(c.gameObject);          //for now - it destroys the client object
             }
 

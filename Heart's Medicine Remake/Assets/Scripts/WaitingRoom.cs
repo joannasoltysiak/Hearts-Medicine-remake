@@ -15,6 +15,7 @@ public class WaitingRoom: MonoBehaviour
     {
         if (numberOfClients < 3)
         {
+            Timer.clientsOnMap++;
             NewClient();
         }
         else

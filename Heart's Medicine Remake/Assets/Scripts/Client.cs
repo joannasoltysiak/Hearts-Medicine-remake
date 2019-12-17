@@ -21,6 +21,7 @@ public class Client : MonoBehaviour
     AIDestinationSetter pathfindingTarget;
 
     public HappinessBar happinessBar;
+    public Animator animator;
 
     float waitingTime;
 
@@ -59,8 +60,10 @@ public class Client : MonoBehaviour
             && state == ClientState.Walking)
         {
             waitingTime = 0;
+
             AddHappiness(0.2f);
-            
+            animator.SetBool("walking", false);
+
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
             targetPosition = Vector3.zero;
@@ -111,6 +114,8 @@ public class Client : MonoBehaviour
             WaitingRoom.DeleteClient(isInWaitingRoom);
             isInWaitingRoom = -1;
         }
+        animator.SetBool("walking", true);
+
         this.targetPlace = targetPlace;
         targetPosition = position.position;
         pathfindingTarget.target = position;
@@ -135,20 +140,20 @@ public class Client : MonoBehaviour
         switch (wantedPlace)
         {
             case PlaceType.Bed:
-                bubble.color = new Color(255, 0, 0, 255);
+                bubble.color = new Color32(155,173, 183, 255);
                 break;
             case PlaceType.Chair:
-                bubble.color = new Color(0, 0, 255, 255);
+                bubble.color = new Color32(89, 86, 82, 255);
                 break;
         }
 
         switch (activeAction) // colour is placeholder for graphics
         {
             case Actions.DoCheckup:
-                bubble.color = new Color(0, 0, 0, 255);
+                bubble.color = new Color32(217, 87, 99, 255);
                 break;
             case Actions.CheckTemperature:
-                bubble.color = new Color(0, 255, 0, 255);
+                bubble.color = new Color32(224, 184, 146, 255);
                 break;
         }
 

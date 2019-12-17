@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
@@ -11,12 +12,19 @@ public class Timer : MonoBehaviour
     float nextClient; // time until next client appear
     public WaitingRoom waitingRoom;
 
+    public TextMeshProUGUI endGame;
+    public GameObject panel;
+
+    public static int clientsOnMap;
+
     // Start is called before the first frame update
     void Start()
     {
+        panel.SetActive(false);
         timerBar = GetComponent<Image>();
         timeLeft = maxTime;
         nextClient = 0f;
+        clientsOnMap = 0;
     }
 
     // Update is called once per frame
@@ -36,7 +44,23 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0;
+            if(clientsOnMap == 0)
+            {
+                endGame.text = "Level Over!";
+                Time.timeScale = 0;
+            }
         }
+    }
+
+    public void StopTimeAndShowInstruction()
+    {
+        Time.timeScale = 0;
+        panel.SetActive(true);
+    }
+
+    public void HideInstruction()
+    {
+        Time.timeScale = 1f;
+        panel.SetActive(false);
     }
 }
