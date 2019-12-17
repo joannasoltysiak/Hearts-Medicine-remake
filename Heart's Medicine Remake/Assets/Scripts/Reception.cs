@@ -35,8 +35,7 @@ public class Reception : MonoBehaviour
     }
 
     public static Transform GetNextPosition()
-    {
-        Vector3 pos = nextPosition;
+    { 
         nextPosition.x -= 1;
         positionTransform.transform.position = nextPosition;
 
