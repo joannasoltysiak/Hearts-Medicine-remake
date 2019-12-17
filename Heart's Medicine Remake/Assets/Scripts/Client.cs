@@ -25,6 +25,9 @@ public class Client : MonoBehaviour
 
     float waitingTime;
 
+    Transform body;
+    Vector3 bodyPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,9 @@ public class Client : MonoBehaviour
         canBeChoosed = true;
 
         waitingTime = 0;
+
+        body = this.gameObject.transform.GetChild(0);
+        bodyPos = body.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -63,6 +69,8 @@ public class Client : MonoBehaviour
             if(wantedPlace != PlaceType.Reception) //only after action 
                 AddHappiness(0.2f);
             animator.SetBool("walking", false);
+            if (wantedPlace == PlaceType.Bed)
+                Rotate(90);
 
             state = ClientState.WaitingForAction;
             pathfindingTarget.target = transform;
@@ -87,6 +95,8 @@ public class Client : MonoBehaviour
             waitingTime += Time.deltaTime;
         }
 
+
+
     }
 
     public void ActionDone() 
@@ -101,6 +111,8 @@ public class Client : MonoBehaviour
             canBeChoosed = false;               //player can't choose him anymore
             activeAction = Actions.None;        //so that no more action would be generated
             targetPlace.MakeEmpty();
+            if (targetPlace.type == PlaceType.Bed)
+                Rotate(0);
             SetTargetPosition(Reception.GetNextPosition(), Reception.actionPlace);
 
             return false;
@@ -108,7 +120,17 @@ public class Client : MonoBehaviour
         return true;
     }
 
-    public void SetTargetPosition(Transform position, ActionPlace targetPlace)
+    public void Rotate(int degrees)
+    {
+        if(degrees==0)
+            body.transform.localPosition = bodyPos;
+        else
+            body.transform.position = transform.position + new Vector3(-0.8f, 1.7f, 0f);
+        
+        body.transform.rotation = Quaternion.Euler(Vector3.forward * degrees);
+    }
+
+        public void SetTargetPosition(Transform position, ActionPlace targetPlace)
     {
         if (isInWaitingRoom >= 0)
         {

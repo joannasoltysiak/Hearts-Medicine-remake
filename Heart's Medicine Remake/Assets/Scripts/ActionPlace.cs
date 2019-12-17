@@ -9,7 +9,6 @@ public class ActionPlace : MonoBehaviour
     Actions[] possibleActions;
     GameObject placeForStanding;
 
-    //public GameState gameState;
 
     // Start is called before the first frame update
     void Start()

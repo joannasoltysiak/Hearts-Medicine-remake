@@ -75,26 +75,31 @@ public class GameState : MonoBehaviour
                 ActionPlace place = hit.collider.gameObject.GetComponent<ActionPlace>();
                 if (clickedObject == null && place.type != PlaceType.Reception)         //player can come to the place without any action
                 {
-                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
-                }
-                else if (place.type == PlaceType.Reception)         //player comes to reception/checkout to take the payment
+                    if (place.IsTaken()) //player comes over to help the client
+                    {
+                        player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), place.GetClient(), ItemType.None);
+
+                    } else
+                        player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
+
+                } else if (place.type == PlaceType.Reception)         //player comes to reception/checkout to take the payment
                 {
                     player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), null, ItemType.None);
                     player.isGoingToReception = true;
-                }
-                else if (place.IsTaken()) //player comes over to help the client
-                {
-                    player.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForPlayer, clickedPlace), place.GetClient(), ItemType.None);
-                }
-                else if (place != null)
+
+                } else if (place != null)
                 {
                     if (clickedObject.tag == "Client" && (place.type == PlaceType.Bed || place.type == PlaceType.Chair))
                     {
                         Client client = clickedObject.GetComponent<Client>();
                         if (client.state == ClientState.WaitingToBePlaced && client.wantedPlace == place.type && !place.IsTaken())//moving client to the specific place
                         {
-                            if(client.targetPlace!=null)
+                            if (client.targetPlace != null)
+                            {
                                 client.targetPlace.MakeEmpty();
+                                if (client.targetPlace.type == PlaceType.Bed)
+                                    client.Rotate(0);
+                            }
 
                             client.SetTargetPosition(SetPositionNextToPlace(place, PositionType.ForClient, clickedPlace), place);
                             place.SetClient(client);
