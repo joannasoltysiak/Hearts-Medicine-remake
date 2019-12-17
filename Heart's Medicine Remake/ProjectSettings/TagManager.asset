@@ -43,14 +43,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Background
     uniqueID: 4007237911
     locked: 0
   - name: Places
     uniqueID: 1099015671
-    locked: 0
-  - name: Default
-    uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 1728489053
