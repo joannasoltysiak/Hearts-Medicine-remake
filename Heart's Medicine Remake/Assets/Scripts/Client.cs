@@ -135,20 +135,20 @@ public class Client : MonoBehaviour
         switch (wantedPlace)
         {
             case PlaceType.Bed:
-                bubble.color = new Color(155,173, 183, 255);
+                bubble.color = new Color32(155,173, 183, 255);
                 break;
             case PlaceType.Chair:
-                bubble.color = new Color(89, 86, 82, 255);
+                bubble.color = new Color32(89, 86, 82, 255);
                 break;
         }
 
         switch (activeAction) // colour is placeholder for graphics
         {
             case Actions.DoCheckup:
-                bubble.color = new Color(0, 0, 0, 255);
+                bubble.color = new Color32(0, 0, 0, 255);
                 break;
             case Actions.CheckTemperature:
-                bubble.color = new Color(224, 184, 146, 255);
+                bubble.color = new Color32(224, 184, 146, 255);
                 break;
         }
 
